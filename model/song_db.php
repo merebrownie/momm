@@ -30,6 +30,16 @@ function get_song_by_id($songID) {
     return $song;
 }
 
+function get_songs() {
+    global $db;
+    $query = 'SELECT * FROM songs';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $songs = $statement->fetchAll();
+    $statement->closeCursor();
+    return $songs;
+}
+
 function delete_song($songID) {
     global $db;
     $query = 'DELETE FROM songs

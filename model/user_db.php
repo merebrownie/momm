@@ -30,6 +30,18 @@ function get_user_by_id($userID) {
     return $user;
 }
 
+function get_user_by_email($email) {
+    global $db;
+    $query = 'SELECT * FROM users
+              WHERE email = :email';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":email", $email);
+    $statement->execute();
+    $user = $statement->fetch();
+    $statement->closeCursor();
+    return $user;
+}
+
 function delete_user($userID) {
     global $db;
     $query = 'DELETE FROM users

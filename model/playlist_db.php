@@ -66,6 +66,16 @@ function get_playlists_by_name($playlist_name) {
     return $playlists;
 }
 
+function get_playlists() {
+    global $db;
+    $query = 'SELECT * FROM playlists';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $playlists = $statement->fetchAll();
+    $statement->closeCursor();
+    return $playlists;
+}
+
 function delete_playlist($playlistID) {
     global $db;
     $query = 'DELETE FROM playlists

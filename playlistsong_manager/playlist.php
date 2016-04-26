@@ -28,12 +28,17 @@
                     <h4>Songs</h4>
                     <div>
                         <table>
-                            <?php foreach ($playlistsongs as $playlistsong) : ?>
-                            <tr>
-<!--                                <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['songID']; ?></a></td>-->
-                                <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $playlistsong['songID']; ?>"><?php echo $playlistsong['songID']; ?></a></td>
-                            </tr>
+                            <?php foreach ($songs as $song) : ?>
+                                <?php foreach ($playlistsongs as $playlistsong) : ?>
+                                    <?php if ($song['songID'] == $playlistsong['songID']) : ?>
+                                        <tr>
+                                        <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
+                                            <!--<td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $playlistsong['songID']; ?>"><?php echo $playlistsong['songID']; ?></a></td>-->
+                                        </tr>
+                                    <?php endif; ?>    
+                                <?php endforeach; ?>
                             <?php endforeach; ?>
+                            
                         </table>   
                     </div>
                     <h4><a href="../playlist_manager/index.php?action=show_add_playlist_form">New Playlist</a></h4>

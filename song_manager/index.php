@@ -2,6 +2,7 @@
 require('../model/database.php');
 require('../model/user_db.php');
 require('../model/song_db.php');
+require '../model/playlist_db.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -34,6 +35,8 @@ if ($action == 'show_add_song_form') {
         $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
     }
     $song = get_song_by_id($songID);
+    // need to change to get_playlists_by_userid();
+    $playlists = get_playlists();
     include 'song.php';
 }
 ?>

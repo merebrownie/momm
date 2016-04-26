@@ -10,7 +10,7 @@
         <link href="../css/momm.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>-->
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <!--brand & toggle for mobile display-->
                 <div class="navbar-header">
@@ -38,9 +38,10 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Action</a></li>
+                                <li><a href="/playlist_manager/index.php?userID=<?php echo $userID; ?>">My Music</a></li>
+                                <li><a href="#">Account Settings</a></li>
+                                
+                                <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Logout</a></li>
                             </ul>

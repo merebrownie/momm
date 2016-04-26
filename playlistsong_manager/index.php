@@ -19,8 +19,11 @@ if ($action == 'show_add_playlistsong_form') {
     }
     $playlist = get_playlist_by_id($playlistID);
     $songs = get_songs();
+    // need to change to get_playlists_by_userid();
+    $playlists = get_playlists();
     include 'playlistsong_add.php';
 } elseif ($action == 'add_playlistsong') {
+    
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
     if ($playlistID === NULL) {
         $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
@@ -32,6 +35,9 @@ if ($action == 'show_add_playlistsong_form') {
     }
     add_playlistsong($playlistID, $songID);
     $playlist = get_playlist_by_id($playlistID);
+    // need to change to get_playlists_by_userid();
+    $playlists = get_playlists();
+    $songs = get_songs();
     $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
     include 'playlist.php';
 } elseif ($action == 'show_playlistsongs') {

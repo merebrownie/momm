@@ -25,6 +25,22 @@
                     <h1><?php echo $song['title']; ?></h1>
                     <h2>Artist: <?php echo $song['artist']; ?></h2>
                     <h3>Genre: <?php echo $song['genre']; ?></h3>
+                    <br>
+                    <h3>Add Song to Playlist</h3>
+                    <div>
+                        <form action="../playlistsong_manager/index.php" method="post">
+                            <input type="hidden" name="action" value="add_playlistsong">
+                            <input type="hidden" name="songID" value="<?php echo $song['songID']; ?>">
+                            <select name="playlistID">
+                                <?php foreach ($playlists as $playlist) : ?>
+                                <option value="<?php $playlist['playlistID']; ?>"><?php $playlist['name']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <br>
+                            <input type="submit" value="Submit" class="btn btn-default">
+                        </form>
+                    </div>
+                    
                 </div>
             </div>
         </section>

@@ -1,6 +1,8 @@
 <?php
 require('../model/database.php');
+require '../model/song_db.php';
 require('../model/playlist_db.php');
+require('../model/playlistsong_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -11,7 +13,13 @@ if ($action === NULL) {
 }
 
 if ($action == 'show_add_playlist_form') {
-    include 'add_playlist.php';
+    $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
+    if ($playlistID === NULL) {
+        $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
+    }
+    $playlist = get_playlist_by_id($playlistID);
+    $songs = get_songs();
+    include 'playlist_add.php';
 } elseif ($action == 'add_playlist') {
     
     // get form data

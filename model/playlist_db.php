@@ -1,15 +1,15 @@
 <?php
 
-function add_playlist($playlist_userID, $playlist_name, $playlist_category) {
+function add_playlist($userID, $name, $category) {
     global $db;
     $query = "INSERT INTO playlists (userID, name, category)
               VALUES (:userID, :name, :category)";
               
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':userID', $playlist_userID);
-        $statement->bindValue(':name', $playlist_name);
-        $statement->bindValue(':category', $playlist_category);
+        $statement->bindValue(':userID', $userID);
+        $statement->bindValue(':name', $name);
+        $statement->bindValue(':category', $category);
         $statement->execute();
         $statement->closeCursor();
     } catch (PDOException $e) {
@@ -30,36 +30,36 @@ function get_playlist_by_id($playlistID) {
     return $playlist;
 }
 
-function get_playlists_by_userid($playlist_userID) {
+function get_playlists_by_userid($userID) {
     global $db;
     $query = 'SELECT * FROM playlists
               WHERE userID = :userID';
     $statement = $db->prepare($query);
-    $statement->bindValue(":userID", $playlist_userID);
+    $statement->bindValue(":userID", $userID);
     $statement->execute();
     $playlists = $statement->fetchAll();
     $statement->closeCursor();
     return $playlists;
 }
 
-function get_playlists_by_category($playlist_category) {
+function get_playlists_by_category($category) {
     global $db;
     $query = 'SELECT * FROM playlists
               WHERE category = :category';
     $statement = $db->prepare($query);
-    $statement->bindValue(":category", $playlist_category);
+    $statement->bindValue(":category", $category);
     $statement->execute();
     $playlists = $statement->fetchAll();
     $statement->closeCursor();
     return $playlists;
 }
 
-function get_playlists_by_name($playlist_name) {
+function get_playlists_by_name($name) {
     global $db;
     $query = 'SELECT * FROM playlists
               WHERE name = :name';
     $statement = $db->prepare($query);
-    $statement->bindValue(":name", $playlist_name);
+    $statement->bindValue(":name", $name);
     $statement->execute();
     $playlists = $statement->fetchAll();
     $statement->closeCursor();
@@ -86,4 +86,3 @@ function delete_playlist($playlistID) {
     $statement->closeCursor();
 }
 
-?>

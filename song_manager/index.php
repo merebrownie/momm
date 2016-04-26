@@ -12,7 +12,7 @@ if ($action === NULL) {
 }
 
 if ($action == 'show_add_song_form') {
-    include 'add_song.php';
+    include 'song_add.php';
 } elseif ($action == 'add_song') {
     
     // get form data
@@ -28,5 +28,12 @@ if ($action == 'show_add_song_form') {
 //    get_playlists_by_userid($userID);
     $songs = get_songs();
     include 'song_list.php';
+} elseif ($action == 'view_song') {
+    $songID = filter_input(INPUT_POST, 'songID', FILTER_VALIDATE_INT);
+    if ($songID === NULL) {
+        $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
+    }
+    $song = get_song_by_id($songID);
+    include 'song.php';
 }
 ?>

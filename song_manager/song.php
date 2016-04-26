@@ -22,16 +22,9 @@
         <section id="container-fluid">
             <div id="row">
                 <div class="container">
-                    <h1>Playlists</h1>
-                    <h3><a href="playlist_add.php">New Playlist</a></h3>
-                    <table>
-                        <?php foreach ($playlists as $playlist) : ?>
-                        <tr>
-                            <td><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                    
+                    <h1><?php echo $song['title']; ?></h1>
+                    <h2>Artist: <?php echo $song['artist']; ?></h2>
+                    <h3>Genre: <?php echo $song['genre']; ?></h3>
                 </div>
             </div>
         </section>

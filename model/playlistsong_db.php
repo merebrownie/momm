@@ -5,16 +5,16 @@ function add_playlistsong($playlistID, $songID) {
     $query = "INSERT INTO playlistsongs (playlistID, songID)
               VALUES (:playlistID, :songID)";
               
-    try {
+//    try {
         $statement = $db->prepare($query);
         $statement->bindValue(':playlistID', $playlistID);
         $statement->bindValue(':songID', $songID);
         $statement->execute();
         $statement->closeCursor();
-    } catch (PDOException $e) {
-        $error_message = $e->getMessage();
-        display_db_error($error_message);
-    }
+//    } catch (PDOException $e) {
+//        $error_message = $e->getMessage();
+//        display_db_error($error_message);
+//    }
 }
 
 function get_playlistsong_by_ids($playlistID, $songID) {

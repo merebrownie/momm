@@ -10,27 +10,26 @@ require 'model/playlistsong_db.php';
 $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/';
 if (!isset($_SESSION['userID'])) {
     header('Location:user_manager/index.php') ;
-} else {
-//    header('Location:view/main.php');
-    $songs = get_songs();
-    include 'view/main.php';
-} 
+}
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action === NULL) {
-        $action = 'search'; // default action
+        $action = 'list_popular_songs'; // default action
     }
 }
 
 if ($action == 'search') {
     // get user input
     $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
-    
     // search songs
     $songs = search_songs($search);
     include 'view/results.php';
+} elseif ($action == 'list_popular_songs') {
+    $songs = get_songs();
+    $popular_songs = get_popular_songs();
+    include 'view/main.php';
 }
 
 ?>

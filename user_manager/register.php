@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="../css/momm.css">
     </head>
     <body>
-        <?php include '../view/header.php';?>
+        <?php include_once '../view/header.php';?>
         <section class="container-fluid">
             <div class="row">
                 <div class="container">
@@ -34,5 +34,6 @@
                 </div>
             </div>
         </section>
+        <?php include_once '../view/footer.php'; ?>
     </body>
 </html>

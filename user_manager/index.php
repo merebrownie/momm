@@ -18,8 +18,6 @@ if ($action === NULL) {
     }
 }
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-
 if ($action == 'show_login_form') {
     include 'login.php';
 } elseif ($action == 'register_user') {
@@ -50,7 +48,7 @@ if ($action == 'show_login_form') {
     // get user from database
     $user = get_user_by_email($email);
     
-    if ($user === NULL) {
+    if ($user == false) {
         $error_message = "Email/password pair not found. Try again.";
         include 'login.php';
         include '../errors/error.php';

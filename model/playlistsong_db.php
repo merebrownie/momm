@@ -65,4 +65,18 @@ function delete_playlistsong($playlistID, $songID) {
     $statement->closeCursor();
 }
 
+function get_popular_songs() {
+    global $db;
+    $query = 'SELECT songID, COUNT(*) '
+            . 'FROM playlistsongs '
+            . 'GROUP BY songID '
+            . 'ORDER BY COUNT(*) DESC '
+            . 'LIMIT 5';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $popular_songs = $statement->fetchAll();
+    $statement->closeCursor();
+    return $popular_songs;
+}
+
 ?>

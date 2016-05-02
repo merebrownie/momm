@@ -32,10 +32,14 @@
                     <h3>Popular Songs</h3>
                     <ol class="list-group">
                         <?php foreach ($songs as $song) : ?>
-                        <li class="list-group-item">
-                            <h4 class="list-group-item-heading"><?php echo $song['title']; ?></h4>
-                            <p class="list-group-item-text"><?php echo $song['artist']; ?></p>
-                        </li>
+                            <?php foreach ($popular_songs as $popular_song) : ?>
+                                <?php if ($song['songID'] == $popular_song['songID']) : ?>
+                                    <li class="list-group-item">
+                                        <h4 class="list-group-item-heading"><?php echo $song['title']; ?></h4>
+                                        <p class="list-group-item-text"><?php echo $song['artist']; ?></p>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
                     </ol>
                 </div>

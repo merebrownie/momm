@@ -68,6 +68,9 @@ if ($action == 'show_add_song_form') {
     $songs = get_songs_by_genre($genre);
     include 'song_list.php';
     include_once 'song_add.php';
+} elseif ($action == 'view_songs_in_order') { 
+    $songs = get_songs_in_order();
+    include ' view/main.php';
 }elseif ($action == 'list_popular_songs') {
     $songs = get_songs();
     $popular_songs = get_popular_songs();

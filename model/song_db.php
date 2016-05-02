@@ -84,6 +84,18 @@ function search_songs($search) {
     $statement->bindValue(':search', $search);
     $statement->execute();
     $songs = $statement->fetchAll();
+    $statement->closeCursor();
+    return $songs;
+}
+
+function get_songs_in_order() {
+    global $db;
+    $query = 'SELECT * FROM songs '
+            . 'ORDER BY timestamp';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $songs = $statement->fetchAll();
+    $statement->closeCursor();
     return $songs;
 }
 

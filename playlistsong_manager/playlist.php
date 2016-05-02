@@ -24,7 +24,6 @@
                 <div class="container">
                     <h1><?php echo $playlist['name']; ?> Songs</h1>
                     <h2>Category: <?php echo $playlist['category']; ?></h2>
-                    <h3><a href="../playlistsong_manager/index.php?action=show_add_playlistsong_form&playlistID=<?php echo $playlistID; ?>">Add Song to Playlist</a></h3>
                     <h4>Songs</h4>
                     <div>
                         <table>
@@ -33,7 +32,6 @@
                                     <?php if ($song['songID'] == $playlistsong['songID']) : ?>
                                         <tr>
                                         <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
-                                            <!--<td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $playlistsong['songID']; ?>"><?php echo $playlistsong['songID']; ?></a></td>-->
                                         </tr>
                                     <?php endif; ?>    
                                 <?php endforeach; ?>
@@ -41,13 +39,12 @@
                             
                         </table>   
                     </div>
+                    <div>
+                    </div>
                     <h4><a href="../playlist_manager/index.php?action=show_add_playlist_form">New Playlist</a></h4>
                     <h4><a href="../song_manager/index.php?action=show_add_song_form">New Song</a></h4>
-                    
-                    
-                    
-                    
                 </div>
+                <?php                include_once '../view/footer.php'; ?>
             </div>
         </section>
     </body>

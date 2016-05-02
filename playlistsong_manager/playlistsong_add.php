@@ -22,27 +22,22 @@
         <section id="container-fluid">
             <div id="row">
                 <div class="container">
-                    <h1>Add Song to Playlist</h1>
+                    <h1>Add Song to <?php echo $playlist['name']; ?></h1>
                     <div>
-                        <form action="index.php" method="post">
-                            <input type="hidden" name="action" value="add_playlistsong">
-                            <input type="hidden">
-                            <h2><?php echo $playlist['name']; ?></h2>
-                            <div>
-                                <form action="index.php" method="post">
-                                    <input type="hidden" name="action" value="add_playlistsong">
-                                    <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
-                                    <select name="songID">
-                                        <?php foreach ($songs as $song) : ?>
-                                        <option value="<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <br>
-                                    <input type="submit" value="Submit" class="btn btn-default">
-                                </form>
-                            </div>
-                            
-                        </form>
+                        <!--<h2></h2>-->
+                        <div>
+                            <form action="index.php" method="post" class="form-horizontal">
+                                <input type="hidden" name="action" value="add_playlistsong">
+                                <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
+                                <select name="songID" class="form-control">
+                                    <?php foreach ($songs as $song) : ?>
+                                    <option value="<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <br>
+                                <input type="submit" value="Submit" class="btn btn-default">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

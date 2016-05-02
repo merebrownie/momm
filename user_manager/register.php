@@ -14,19 +14,19 @@
                 <div class="container">
                     <h2>Register</h2>
                     <div>
-                        <form action="index.php" method="post">
+                        <form action="index.php" method="post" class="form-horizontal">
                             <input type="hidden" name="action" value="register_user">
-                            <label>Name: </label>
-                            <input type="text" name="name">
+                            <label class="control-label">Name: </label>
+                            <input type="text" name="name" class="form-control">
                             <br>
-                            <label>Email: </label>
-                            <input type="email" name="email">
+                            <label class="control-label">Email: </label>
+                            <input type="email" name="email" class="form-control">
                             <br>
-                            <label>Password: </label>
-                            <input type="password" name="password">
+                            <label class="control-label">Password: </label>
+                            <input type="password" name="password" class="form-control">
                             <br>
-                            <label>Re-enter Password: </label>
-                            <input type="password" name="passwordcopy">
+                            <label class="control-label">Re-enter Password: </label>
+                            <input type="password" name="passwordcopy" class="form-control">
                             <br>
                             <input type="submit" value="Register" class="btn btn-default">
                         </form>

@@ -1,8 +1,11 @@
 <?php
+session_start();
+
 require('../model/database.php');
 require('../model/user_db.php');
 require('../model/song_db.php');
 require '../model/playlist_db.php';
+require '../model/playlistsong_db.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -12,9 +15,18 @@ if ($action === NULL) {
     }
 }
 
+if (!isset($_SESSION['userID'])) {
+    include 'user_manager/login.php';
+} else {
+    $userID = $_SESSION['userID'];
+}
+
 if ($action == 'show_add_song_form') {
+    $user = get_user_by_id($userID);
     include 'song_add.php';
 } elseif ($action == 'add_song') {
+
+    $user = get_user_by_id($userID);
     
     // get form data
     $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
@@ -26,17 +38,19 @@ if ($action == 'show_add_song_form') {
     $songs = get_songs();
     include 'song_list.php';
 } elseif ($action == 'list_songs') {
-//    get_playlists_by_userid($userID);
     $songs = get_songs();
     include 'song_list.php';
+    include 'song_add.php';
 } elseif ($action == 'view_song') {
+
+    $user = get_user_by_id($userID);
+    
     $songID = filter_input(INPUT_POST, 'songID', FILTER_VALIDATE_INT);
     if ($songID === NULL) {
         $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
     }
     $song = get_song_by_id($songID);
-    // need to change to get_playlists_by_userid();
-    $playlists = get_playlists();
+    $playlists = get_playlists_by_userid($userID);
     include 'song.php';
 }
 ?>

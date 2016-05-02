@@ -18,13 +18,13 @@
         <link rel="stylesheet" href="../css/momm.css">
     </head>
     <body>
-        <?php include '../view/header.php';?>
+        <?php include_once '../view/header.php';?>
         <section id="container-fluid">
             <div id="row">
                 <div class="container">
                     <h1>Songs</h1>
                     <h3><a href="song_add.php">New Song</a></h3>
-                    <table>
+                    <table class="table table-bordered table-hover">
                         <tr>
                             <th>Title</th>
                             <th>Artist</th>
@@ -42,5 +42,6 @@
                 </div>
             </div>
         </section>
+        <?php        include_once '../view/footer.php'; ?>
     </body>
 </html>

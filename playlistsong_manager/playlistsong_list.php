@@ -32,7 +32,6 @@
                         <table>
                             <?php foreach ($playlistsongs as $playlistsong) : ?>
                             <tr>
-<!--                                <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['songID']; ?></a></td>-->
                                 <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $playlistsong['songID']; ?>"><?php echo $playlistsong['songID']; ?></a></td>
                             </tr>
                             <?php endforeach; ?>

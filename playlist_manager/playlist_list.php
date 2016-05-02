@@ -23,11 +23,11 @@
             <div id="row">
                 <div class="container">
                     <h1>Playlists</h1>
-                    <h3><a href="playlist_add.php">New Playlist</a></h3>
+                    <!--<h3><a href="index.php?action=show_add_playlist_form&userID=<?php echo $user['userID']; ?>">New Playlist</a></h3>-->
                     <table>
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>
-                            <td><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></td>
+                            <td><h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>&userID=<?php echo $user['userID']; ?>"><?php echo $playlist['name']; ?></a></h3></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>
@@ -35,5 +35,6 @@
                 </div>
             </div>
         </section>
+        <?php        include_once '../view/footer.php'; ?>
     </body>
 </html>

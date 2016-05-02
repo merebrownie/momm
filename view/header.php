@@ -1,4 +1,5 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
+<?php $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/'; ?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -26,7 +27,7 @@
                 <!--nav links, forms, & other content for toggling-->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="../index.php">Home <span class="sr-only">(current)</span></a></li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
@@ -38,12 +39,12 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/playlist_manager/index.php?userID=<?php echo $userID; ?>">My Music</a></li>
+                                <li><a href="playlist_manager/">My Music</a></li>
                                 <li><a href="#">Account Settings</a></li>
                                 
                                 <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">Logout</a></li>
+                                <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -51,10 +52,10 @@
             </div>
         </nav>
         
-        <script src="../js/jquery-2.2.0.min-2.js" type="text/javascript"></script>
-        <script src="../js/jquery.easing.min.js" type="text/javascript"></script>
-        <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../bootstrap/js/npm.js" type="text/javascript"></script>
+<!--        <script src="<?php echo $path; ?>/momm/js/jquery-2.2.0.min-2.js" type="text/javascript"></script>
+        <script src="<?php echo $path; ?>/momm/js/jquery.easing.min.js" type="text/javascript"></script>
+        <script src="<?php echo $path; ?>/momm/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?php echo $path; ?>/momm/bootstrap/js/npm.js" type="text/javascript"></script>-->
         
-<!--    </body>
-</html>-->
+    </body>
+</html>

@@ -28,11 +28,12 @@
                     <br>
                     <h3>Add Song to Playlist</h3>
                     <div>
-                        <form action="../playlistsong_manager/index.php" method="post">
+                        <form action="../playlistsong_manager/index.php" method="post" class="form-horizontal">
                             <input type="hidden" name="action" value="add_playlistsong">
                             <input type="hidden" name="songID" value="<?php echo $song['songID']; ?>">
-                            <select name="playlistID">
+                            <select name="playlistID" class="form-control">
                                 <?php foreach ($playlists as $playlist) : ?>
+                                <?php echo $playlist['playlistID']; ?>
                                 <option value="<?php $playlist['playlistID']; ?>"><?php $playlist['name']; ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -40,9 +41,10 @@
                             <input type="submit" value="Submit" class="btn btn-default">
                         </form>
                     </div>
-                    
+                    <h3></h3>
                 </div>
             </div>
         </section>
+        <?php        include_once '../view/footer.php'; ?>
     </body>
 </html>

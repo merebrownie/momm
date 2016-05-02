@@ -13,12 +13,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="../css/momm.css">
+        <link href="../../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../css/momm.css">
     </head>
     <body>
-        <?php include '../view/header.php';?>
+        <?php include '../../view/header.php';?>
         <section id="container-fluid">
             <div id="row">
                 <div class="container">
@@ -31,6 +31,7 @@
                                 <th>Title</th>
                                 <th>Artist</th>
                                 <th>Genre</th>
+                                <th></th>
                             </tr>
                             <?php foreach ($songs as $song) : ?>
                                 <?php foreach ($playlistsongs as $playlistsong) : ?>
@@ -39,6 +40,7 @@
                                             <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
                                             <td><a href="../song_manager/index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><?php echo $song['artist']; ?></a></td>
                                             <td><a href="../song_manager/index.php?action=view_songs_by_genre&genre=<?php echo $song['genre']; ?>"><?php echo $song['genre']; ?></a></td>
+                                            <td><a href="../playlistsong_manager/index.php?action=delete_playlistsong&playlistID=<?php echo $playlistsong['playlistID']; ?>&songID=<?php echo $playlistsong['songID']; ?>">Delete Song</a></td>
                                         </tr>
                                     <?php endif; ?>    
                                 <?php endforeach; ?>
@@ -51,7 +53,7 @@
                     <h4><a href="../playlist_manager/index.php?action=show_add_playlist_form">New Playlist</a></h4>
                     <h4><a href="../song_manager/index.php?action=show_add_song_form">New Song</a></h4>
                 </div>
-                <?php                include_once '../view/footer.php'; ?>
+                <?php                include_once '../../view/footer.php'; ?>
             </div>
         </section>
     </body>

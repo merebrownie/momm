@@ -1,18 +1,17 @@
 <?php 
 session_start(); 
 
-require('model/database.php');
-require('model/user_db.php');
-require('model/song_db.php');
-require 'model/playlist_db.php';
-require 'model/playlistsong_db.php';
+require('../model/database.php');
+require('../model/user_db.php');
+require('../model/song_db.php');
+require '../model/playlist_db.php';
+require '../model/playlistsong_db.php';
 
 $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/';
 if (!isset($_SESSION['userID'])) {
     header('Location:user_manager/index.php') ;
 } else {
 //    header('Location:view/main.php');
-    $songs = get_songs();
     include 'view/main.php';
 } 
 
@@ -30,7 +29,7 @@ if ($action == 'search') {
     
     // search songs
     $songs = search_songs($search);
-    include 'view/results.php';
+    include '../view/results.php';
 }
 
 ?>

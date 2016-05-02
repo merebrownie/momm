@@ -33,7 +33,8 @@ function get_playlistsong_by_ids($playlistID, $songID) {
 function get_playlistsongs_by_playlistid($playlistID) {
     global $db;
     $query = 'SELECT * FROM playlistsongs
-              WHERE playlistID = :playlistID';
+              WHERE playlistID = :playlistID
+              ORDER BY timestamp';
     $statement = $db->prepare($query);
     $statement->bindValue(":playlistID", $playlistID);
     $statement->execute();

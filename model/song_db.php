@@ -40,6 +40,30 @@ function get_songs() {
     return $songs;
 }
 
+function get_songs_by_artist($artist) {
+    global $db;
+    $query = 'SELECT * FROM songs '
+            . 'WHERE artist = :artist';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':artist', $artist);
+    $statement->execute();
+    $songs = $statement->fetchAll();
+    $statement->closeCursor();
+    return $songs;
+}
+
+function get_songs_by_genre($genre) {
+    global $db;
+    $query = 'SELECT * FROM songs '
+            . 'WHERE genre = :genre';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':genre', $genre);
+    $statement->execute();
+    $songs = $statement->fetchAll();
+    $statement->closeCursor();
+    return $songs;
+}
+
 function delete_song($songID) {
     global $db;
     $query = 'DELETE FROM songs
@@ -48,6 +72,19 @@ function delete_song($songID) {
     $statement->bindValue(':songID', $songID);
     $statement->execute();
     $statement->closeCursor();
+}
+
+function search_songs($search) {
+    global $db;
+    $query = 'SELECT * FROM songs '
+            . 'WHERE title LIKE :search '
+            . 'OR artist LIKE :search '
+            . 'OR genre LIKE :search';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':search', $search);
+    $statement->execute();
+    $songs = $statement->fetchAll();
+    return $songs;
 }
 
 ?>

@@ -45,7 +45,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/momm/playlist_manager/">My Music</a></li>
-                                <li><a href="/momm/user_manager/index.php?action=view_settings">Account Settings</a></li>
+                                <li><a href="#">Account Settings</a></li>
                                 <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>

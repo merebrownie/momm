@@ -1,7 +1,9 @@
 <?php
     $dsn = 'mysql:host=localhost;dbname=momm';
+//    $dsn = 'mysql:host=localhost;dbname=meredi35_momm';
     $username = 'root';
 //    $username = 'merebrownie';
+//    $username = 'meredi35_admin';
 //    $password = 'brow4780';
     
     try {

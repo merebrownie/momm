@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="css/momm.css">
     </head>
     <body>
-        <?php include_once 'view/header.php'; ?>
+        <?php include_once 'header.php'; ?>
         <section class="container-fluid">
             <div class="row">
                 <div class="col-md-8 col-sm-8">                        
@@ -45,10 +45,14 @@
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                     </ol>
-                    <h2>Admin Panel</h2>
-                    <h3><a href="/momm/admin/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h3>
-                    <h3><a href="/momm/admin/song_manager/index.php?action=list_songs">Song Manager</a></h3>
-                    <h3><a href="/momm/admin/user_manager/index.php?action=list_users">User Manager</a></h3>
+                    <h3>Admin Panel</h3>
+                    <div class="list-group">
+                        <h4><a class="list-group-item" href="/momm/admin/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h4>
+                        <h4><a class="list-group-item" href="/momm/admin/song_manager/index.php?action=list_songs">Song Manager</a></h4>
+                        <h4><a class="list-group-item" href="/momm/admin/user_manager/index.php?action=list_users">User Manager</a></h4>
+                    </div>
+                    
+                    
                 </div>
             </div>
         </section>

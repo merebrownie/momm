@@ -80,12 +80,17 @@ function search_songs($search) {
             . 'WHERE title LIKE :search '
             . 'OR artist LIKE :search '
             . 'OR genre LIKE :search';
-    $statement = $db->prepare($query);
-    $statement->bindValue(':search', $search);
-    $statement->execute();
-    $songs = $statement->fetchAll();
-    $statement->closeCursor();
-    return $songs;
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':search', '%' . $search . '%');
+        $statement->execute();
+        $songs = $statement->fetchAll();
+        $statement->closeCursor();
+        return $songs;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
 }
 
 function get_songs_in_order() {

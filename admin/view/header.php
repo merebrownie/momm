@@ -42,10 +42,13 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/momm/playlist_manager/">My Music</a></li>
-                                <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
+                                <li><a href="/momm/admin/playlist_manager/">Playlist Manager</a></li>
+                                <li><a href="/momm/admin/song_manager/">Song Manager</a></li>
+                                <li><a href="/momm/admin/user_manager/">User Manager</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/momm/admin/user_manager/index.php?action=view_user">Account Settings</a></li>
                                 <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>

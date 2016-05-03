@@ -85,7 +85,7 @@ if ($action == 'show_add_song_form') {
             foreach ($playlistsongs as $playlistsong) {
                 if ($playlistsong['songID'] == $songID) {
                     // delete playlistsong from playlistsong db
-                    delete_playlistsong($playlistID, $songID);
+                    delete_playlistsong($playlist['playlistID'], $songID);
                 }
             }
         }
@@ -95,7 +95,9 @@ if ($action == 'show_add_song_form') {
         // add event to event db
         $song = get_song_by_id($songID);
         $message = 'Song ' . $song['title'] . ' by ' . $song['artist'] . ' removed by Admin.';
-        
     }
+    $songs = get_songs();
+    include 'song_list.php';
+    include 'song_add.php';
 }
 ?>

@@ -86,3 +86,20 @@ function delete_playlist($playlistID) {
     $statement->closeCursor();
 }
 
+function search_playlists($search) {
+    global $db;
+    $query = 'SELECT * FROM playlists '
+            . 'WHERE name LIKE :search '
+            . 'OR category LIKE :search';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':search', '%' . $search . '%');
+        $statement->execute();
+        $songs = $statement->fetchAll();
+        $statement->closeCursor();
+        return $songs;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}

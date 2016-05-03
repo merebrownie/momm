@@ -13,10 +13,13 @@ $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action === NULL) {
-        if (!isset($_SESSION['userID'])) {
-            $action = 'show_login_form'; // fault action
-        }
+        $action = 'list_users';
     }
+}
+if (!isset($_SESSION['userID'])) {
+    $action = 'show_login_form'; // fault action
+} else {
+    $userID = $_SESSION['userID'];
 }
 
 if ($action == 'show_login_form') {
@@ -101,5 +104,25 @@ if ($action == 'show_login_form') {
     
     $user = get_user_by_id($other_userID);
     include 'user.php';
+} elseif ($action == 'change_password_from_id') {
+    $other_userID = filter_input(INPUT_POST, 'userID', FILTER_VALIDATE_INT);
+    if ($other_userID === NULL) {
+        $other_userID = filter_input(INPUT_GET, 'userID', FILTER_VALIDATE_INT);
+    }
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $passwordcopy = filter_input(INPUT_POST, 'passwordcopy', FILTER_SANITIZE_STRING);
+    
+    $user = get_user_by_id($other_userID);
+    
+    // check if passwords match
+    if ($password == $passwordcopy) {
+        // change password in database
+        $result = change_password($other_userID, $password);
+        include 'user.php';
+    } else {
+        $error_message = 'Passwords do not match, try again.';
+        include 'user.php';
+        include '../errors/error.php';
+    }
 }
 ?>

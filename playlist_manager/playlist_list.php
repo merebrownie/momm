@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="../css/momm.css">
     </head>
     <body>
-        <?php include '../view/header.php';?>
+        <?php include '../admin/view/header.php';?>
         <section id="container-fluid">
             <div id="row">
                 <div class="container">

@@ -18,28 +18,30 @@
         <link rel="stylesheet" href="../../css/momm.css">
     </head>
     <body>
-        <?php include '../../view/header.php';?>
-        <section id="container-fluid">
-            <div id="row">
+        <?php include '../view/header.php';?>
+        <section class="container-fluid">
+            <div class="row">
                 <div class="container">
                     <h1>Users</h1>
-                    <table class="table table-hover table-striped table-responsive">
+                    <table class="table table-hover table-responsive">
                         <th>#</th>
-                        <th>Name</th>
                         <th>Email</th>
-                        <th>Password</th>
+                        <th></th>
                         <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td><a href="index.php?action=view_user_from_id&userID=<?php echo $user['userID']; ?>"><?php echo $user['userID']; ?></a></td>
-                            <td><?php echo $user['name']; ?></td>
+                            <td><?php echo $user['userID']; ?></td>
                             <td><?php echo $user['email']; ?></td>
-                            <td><?php echo $user['password']; ?></td>
+                            <td><a href="index.php?action=view_user_from_id&userID=<?php echo $user['userID']; ?>">View</a></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>
                     
                 </div>
             </div>
+            <div class="container">
+                <?php include 'add_user.php'; ?>
+            </div>
+            <div 
         </section>
         <?php        include_once '../../view/footer.php'; ?>
     </body>

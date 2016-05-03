@@ -38,7 +38,8 @@
                     <h1>Change Password</h1>
                     <div>
                         <form action="index.php" method="post" class="form-horizontal">
-                            <input type="hidden" name="action" value="change_password">
+                            <input type="hidden" name="action" value="change_password_from_id">
+                            <input type="hidden" name="userID" value="<?php echo $user['userID']; ?>">
                             <label class="control-label">Password: </label>
                             <input type="password" name="password" class="form-control">
                             <br>

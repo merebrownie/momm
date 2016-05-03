@@ -28,6 +28,7 @@ if ($action == 'search') {
     $search = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
     // search songs
     $songs = search_songs($search);
+    $playlists = search_playlists($search);
     include 'view/results.php';
 } elseif ($action == 'show_main') {
     $songs = get_songs();

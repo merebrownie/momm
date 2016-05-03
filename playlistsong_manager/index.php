@@ -6,6 +6,7 @@ require '../model/playlist_db.php';
 require '../model/song_db.php';
 require '../model/playlistsong_db.php';
 require '../model/user_db.php';
+require '../model/event_db.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -46,8 +47,13 @@ if ($action == 'show_add_playlistsong_form') {
     if ($songID === NULL) {
         $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
     }
+    // add playlistsong to database
     add_playlistsong($playlistID, $songID);
+    // add event to eventdb
     $playlist = get_playlist_by_id($playlistID);
+    $song = get_song_by_id($songID);
+    $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'];
+    add_event('playlistsong', $message);
     // need to change to get_playlists_by_userid();
     $playlists = get_playlists_by_userid($userID);
     $songs = get_songs();

@@ -27,7 +27,7 @@
                     <table>
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>
-                            <td><h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>&userID=<?php echo $user['userID']; ?>"><?php echo $playlist['name']; ?></a></h3></td>
+                            <td><h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></h3></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

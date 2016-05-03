@@ -6,6 +6,7 @@ require('../model/user_db.php');
 require '../model/playlist_db.php';
 require '../model/song_db.php';
 require '../model/playlistsong_db.php';
+require '../model/event_db.php';
 
 
 $action = filter_input(INPUT_POST, 'action');

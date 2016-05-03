@@ -8,10 +8,10 @@
 
 function get_feed() {
     global $db;
-    $query = 'SELECT songID id, timestamp '
+    $query = 'SELECT songID id, title name, timestamp '
             . 'FROM songs '
             . 'UNION '
-            . 'SELECT playlistID id, timestamp '
+            . 'SELECT playlistID id, name, timestamp '
             . 'FROM playlists '
             . 'ORDER BY timestamp';
     $statement = $db->prepare($query);

@@ -3,8 +3,7 @@
 function add_user($name, $email, $password) {
     global $db;
     $query = "INSERT INTO users (name, email, password)
-              VALUES (:name, :email, :password)";
-              
+              VALUES (:name, :email, :password)";    
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':name', $name);

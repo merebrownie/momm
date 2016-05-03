@@ -6,7 +6,7 @@ require('model/user_db.php');
 require('model/song_db.php');
 require 'model/playlist_db.php';
 require 'model/playlistsong_db.php';
-require 'model/feed_db.php';
+require 'model/event_db.php';
 
 $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/';
 if (!isset($_SESSION['userID'])) {
@@ -30,7 +30,7 @@ if ($action == 'search') {
 } elseif ($action == 'show_main') {
     $songs = get_songs();
     $popular_songs = get_popular_songs();
-    $events = get_feed();
+    $events = get_events_by_timestamp();
     include 'view/main.php';
 }
 

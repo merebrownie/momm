@@ -26,8 +26,7 @@
                     <ul class="list-group">
                         <?php foreach ($events as $event) : ?>
                         <li class="list-group-item">
-                            Event: <?php echo $event['id']; ?>
-                            Timestamp: <?php echo $event['timestamp']; ?>
+                            <?php echo $event['timestamp']; ?> <?php echo $event['message']; ?>
                         </li>
                     <?php endforeach; ?>
                     </ul>

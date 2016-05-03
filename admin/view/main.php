@@ -21,11 +21,34 @@
         <?php include_once 'view/header.php'; ?>
         <section class="container-fluid">
             <div class="row">
-                <div class="container">
-                    <h1>Admin Panel</h1>
-                    <h2><a href="/momm/admin/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h2>
-                    <h2><a href="/momm/admin/song_manager/index.php?action=list_songs">Song Manager</a></h2>
-                    <h2><a href="/momm/admin/user_manager/index.php?action=list_users">User Manager</a></h2>
+                <div class="col-md-8 col-sm-8">                        
+                    <h3>News Feed</h3>
+                    <ul class="list-group">
+                        <?php foreach ($events as $event) : ?>
+                        <li class="list-group-item">                            <?php echo $event['timestamp']; ?> <?php echo $event['message']; ?>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                                                
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <h3>Popular Songs</h3>
+                    <ol class="list-group">
+                        <?php foreach ($popular_songs as $popular_song) : ?>
+                            <?php foreach ($songs as $song) : ?>
+                                <?php if ($song['songID'] == $popular_song['songID']) : ?>
+                                    <li class="list-group-item">
+                                        <h4 class="list-group-item-heading"><?php echo $song['title']; ?></h4>
+                                        <p class="list-group-item-text"><?php echo $song['artist']; ?></p>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php endforeach; ?>
+                    </ol>
+                    <h2>Admin Panel</h2>
+                    <h3><a href="/momm/admin/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h3>
+                    <h3><a href="/momm/admin/song_manager/index.php?action=list_songs">Song Manager</a></h3>
+                    <h3><a href="/momm/admin/user_manager/index.php?action=list_users">User Manager</a></h3>
                 </div>
             </div>
         </section>

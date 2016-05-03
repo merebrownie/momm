@@ -68,5 +68,34 @@ if ($action == 'show_add_song_form') {
     $songs = get_songs_by_genre($genre);
     include 'song_list.php';
     include_once 'song_add.php';
+} elseif ($action == 'delete_song') {
+    $songID = filter_input(INPUT_POST, 'songID', FILTER_VALIDATE_INT);
+    if ($songID === NULL) {
+        $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
+    }
+    $user = get_user_by_id($userID);
+    
+    // make sure user is admin
+    if ($user['admin'] == 1) {
+        
+        // remove song from playlists
+        $playlists = get_playlists();
+        foreach ($playlists as $playlist) {
+            $playlistsongs = get_playlistsongs_by_playlistid($playlist['playlistID']);
+            foreach ($playlistsongs as $playlistsong) {
+                if ($playlistsong['songID'] == $songID) {
+                    // delete playlistsong from playlistsong db
+                    delete_playlistsong($playlistID, $songID);
+                }
+            }
+        }
+        
+        // delete song from songdb
+        delete_song($songID);
+        // add event to event db
+        $song = get_song_by_id($songID);
+        $message = 'Song ' . $song['title'] . ' by ' . $song['artist'] . ' removed by Admin.';
+        
+    }
 }
 ?>

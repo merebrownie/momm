@@ -6,6 +6,7 @@ require('../../model/user_db.php');
 require '../../model/playlist_db.php';
 require '../../model/song_db.php';
 require '../../model/playlistsong_db.php';
+require '../../model/event_db.php';
 
 
 $action = filter_input(INPUT_POST, 'action');
@@ -18,8 +19,6 @@ if ($action === NULL) {
     }
 }
 
-$path = $_SERVER['DOCUMENT_ROOT'];
-
 if ($action == 'show_login_form') {
     include 'login.php';
 } elseif ($action == 'register_user') {
@@ -28,10 +27,19 @@ if ($action == 'show_login_form') {
     $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $passwordcopy = filter_input(INPUT_POST, 'passwordcopy', FILTER_SANITIZE_STRING);
     
-    // add user to database
-    add_user($name, $email, $password);
-    include 'login.php';
+    // check if passwords match
+    if ($password == $passwordcopy) {
+        // add user to database
+        add_user($name, $email, $password);
+        include 'login.php';
+    } else {
+        $error_message = 'Passwords do not match, try again.';
+        include 'login.php';
+        include '../errors/error.php';
+    }
+    
 } elseif ($action == 'login_user') {
     
     // get login form data
@@ -41,7 +49,7 @@ if ($action == 'show_login_form') {
     // get user from database
     $user = get_user_by_email($email);
     
-    if ($user === NULL) {
+    if ($user == false) {
         $error_message = "Email/password pair not found. Try again.";
         include 'login.php';
         include '../errors/error.php';
@@ -62,8 +70,36 @@ if ($action == 'show_login_form') {
     session_unset();
     session_destroy();
     include 'login.php';
+} elseif ($action == 'view_user') {
+    $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
+    include 'user.php';
+} elseif ($action == 'change_password') {
+    $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
+    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+    $passwordcopy = filter_input(INPUT_POST, 'passwordcopy', FILTER_SANITIZE_STRING);
+    
+    // check if passwords match
+    if ($password == $passwordcopy) {
+        // change password in database
+        $result = change_password($userID, $password);
+        include 'user.php';
+    } else {
+        $error_message = 'Passwords do not match, try again.';
+        include 'user.php';
+        include '../errors/error.php';
+    }
 } elseif ($action == 'list_users') {
     $users = get_users();
     include 'user_list.php';
+} elseif ($action == 'view_user_from_id') {
+    $other_userID = filter_input(INPUT_POST, 'userID', FILTER_VALIDATE_INT);
+    if ($other_userID === NULL) {
+        $other_userID = filter_input(INPUT_GET, 'userID', FILTER_VALIDATE_INT);
+    }
+    
+    $user = get_user_by_id($other_userID);
+    include 'user.php';
 }
 ?>

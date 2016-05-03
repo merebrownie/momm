@@ -11,6 +11,8 @@ require 'model/event_db.php';
 $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/';
 if (!isset($_SESSION['userID'])) {
     header('Location:user_manager/index.php') ;
+} else {
+    $userID = $_SESSION['userID'];
 }
 
 $action = filter_input(INPUT_POST, 'action');
@@ -31,7 +33,13 @@ if ($action == 'search') {
     $songs = get_songs();
     $popular_songs = get_popular_songs();
     $events = get_events_by_timestamp();
-    include 'view/main.php';
+    $user = get_user_by_id($userID);
+    if ($user['admin'] == 1) {
+        include 'admin/view/main.php';
+    } else {
+        include 'view/main.php';
+    }
+    
 }
 
 ?>

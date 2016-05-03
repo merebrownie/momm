@@ -29,6 +29,7 @@ if ($action == 'search') {
     
     // search songs
     $songs = search_songs($search);
+    $playlists = search_playlists($search);
     include '../view/results.php';
 }
 

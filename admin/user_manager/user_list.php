@@ -24,9 +24,14 @@
                 <div class="container">
                     <h1>Users</h1>
                     <table class="table table-hover table-striped table-responsive">
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
                         <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td><?php echo $user['userID']; ?></td>
+                            <td><a href="index.php?action=view_user_from_id&userID=<?php echo $user['userID']; ?>"><?php echo $user['userID']; ?></a></td>
+                            <td><?php echo $user['name']; ?></td>
                             <td><?php echo $user['email']; ?></td>
                             <td><?php echo $user['password']; ?></td>
                         </tr>

@@ -70,7 +70,7 @@ if ($action == 'show_login_form') {
     session_unset();
     session_destroy();
     include 'login.php';
-} elseif ($action == 'view_settings') {
+} elseif ($action == 'view_user') {
     $userID = $_SESSION['userID'];
     $user = get_user_by_id($userID);
     include 'user.php';

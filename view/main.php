@@ -22,11 +22,10 @@
         <section class="container-fluid">
             <div class="row">
                 <div class="col-md-8 col-sm-8">                        
-                    <h3>Feed</h3>
+                    <h3>News Feed</h3>
                     <ul class="list-group">
                         <?php foreach ($events as $event) : ?>
-                        <li class="list-group-item">
-                            <?php echo $event['timestamp']; ?> <?php echo $event['message']; ?>
+                        <li class="list-group-item">                            <?php echo $event['timestamp']; ?> <?php echo $event['message']; ?>
                         </li>
                     <?php endforeach; ?>
                     </ul>

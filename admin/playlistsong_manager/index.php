@@ -6,6 +6,7 @@ require '../../model/playlist_db.php';
 require '../../model/song_db.php';
 require '../../model/playlistsong_db.php';
 require '../../model/user_db.php';
+require '../../model/event_db.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -68,13 +69,36 @@ if ($action == 'show_add_playlistsong_form') {
     include 'playlist.php';
     include 'playlistsong_add.php';
 } elseif ($action == 'delete_playlistsong') {
+    $user = get_user_by_id($userID);
+    $playlists = get_playlists_by_userid($userID);
+    
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
     if ($playlistID === NULL) {
         $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
     }
+    
+    $songID = filter_input(INPUT_POST, 'songID', FILTER_VALIDATE_INT);
+    if ($songID === NULL) {
+        $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
+    }
+    
+    // make sure playlist belongs to user or user is admin
     $playlist = get_playlist_by_id($playlistID);
-    $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
-    $songs = get_songs();
-    include 'playlist.php';
-    include 'playlistsong_add.php';
+    $song = get_song_by_id($songID);
+    if ($playlist['userID'] == $userID || $user['admin'] == 1) {
+        // delete playlistsong from db
+        delete_playlistsong($playlistID, $songID);
+        // log event in eventdb
+        if ($user['admin'] == 1) {
+            $message = $song['title'] . ' by ' . $song['artist'] . ' removed from ' . $playlist['name'] . ' by Admin.';
+        } else {
+            $message = $song['title'] . ' by ' . $song['artist'] . ' removed from ' . $playlist['name'] . ' by ' . $user['name'];
+        }
+        
+        add_event('playlistsong', $message);
+        $songs = get_songs();
+        $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+        include 'playlist.php';
+        include 'playlistsong_add.php';
+    }
 }

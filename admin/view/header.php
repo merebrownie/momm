@@ -45,23 +45,15 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/momm/playlist_manager/">My Music</a></li>
-                                <li><a href="#">Account Settings</a></li>
+                                <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
                                 <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/momm/admin/">Admin</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        
-<!--        <script src="<?php echo $path; ?>/momm/js/jquery-2.2.0.min-2.js" type="text/javascript"></script>
-        <script src="<?php echo $path; ?>/momm/js/jquery.easing.min.js" type="text/javascript"></script>
-        <script src="<?php echo $path; ?>/momm/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo $path; ?>/momm/bootstrap/js/npm.js" type="text/javascript"></script>-->
-        
     </body>
 </html>

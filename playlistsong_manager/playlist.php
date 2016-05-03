@@ -31,14 +31,16 @@
                                 <th>Title</th>
                                 <th>Artist</th>
                                 <th>Genre</th>
+                                <th></th>
                             </tr>
-                            <?php foreach ($songs as $song) : ?>
-                                <?php foreach ($playlistsongs as $playlistsong) : ?>
+                            <?php foreach ($playlistsongs as $playlistsong) : ?>
+                                <?php foreach ($songs as $song) : ?>
                                     <?php if ($song['songID'] == $playlistsong['songID']) : ?>
                                         <tr>
                                             <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
                                             <td><a href="../song_manager/index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><?php echo $song['artist']; ?></a></td>
                                             <td><a href="../song_manager/index.php?action=view_songs_by_genre&genre=<?php echo $song['genre']; ?>"><?php echo $song['genre']; ?></a></td>
+                                            <td><a href="../playlistsong_manager/index.php?action=delete_playlistsong&playlistID=<?php echo $playlistsong['playlistID']; ?>&songID=<?php echo $playlistsong['songID']; ?>">Delete Song</a></td>
                                         </tr>
                                     <?php endif; ?>    
                                 <?php endforeach; ?>

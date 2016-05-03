@@ -57,10 +57,12 @@ function get_playlistsongs_by_songid($songID) {
 
 function delete_playlistsong($playlistID, $songID) {
     global $db;
-    $query = 'DELETE FROM users
-              WHERE userID = :userID';
+    $query = 'DELETE FROM playlistsongs
+              WHERE playlistID = :playlistID
+              AND songID = :songID';
     $statement = $db->prepare($query);
-    $statement->bindValue(':userID', $userID);
+    $statement->bindValue(':playlistID', $playlistID);
+    $statement->bindValue(':songID', $songID);
     $statement->execute();
     $statement->closeCursor();
 }

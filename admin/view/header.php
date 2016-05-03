@@ -33,7 +33,7 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search" 
-                          action="/momm/index.php" method="post">
+                          action="index.php" method="post">
                         <div class="form-group">
                             <input type="hidden" name="action" value="search">
                             <input type="text" class="form-control" name="search" placeholder="Search">

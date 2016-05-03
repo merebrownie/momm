@@ -16,12 +16,18 @@
         <link rel="stylesheet" href="../../css/momm.css">
     </head>
     <body>
-        <?php include '../view/header.php';?>
+        <?php include 'header.php';?>
         <section class="container-fluid">
             <div class="row">
                 <div class="container">
-                    <h3>Search Results</h3>
+                    <h3>Search Results <label class="label label-default label-success"><?php echo $search; ?></label></h3>
+                    <h4>Songs</h4>
                     <table class="table">
+                        <tr>
+                            <th>Title</th>
+                            <th>Artist</th>
+                            <th>Genre</th>
+                        </tr>
                         <?php foreach ($songs as $song) : ?>
                         <tr>
                             <td><a href="index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
@@ -30,8 +36,24 @@
                         </tr>
                         <?php endforeach; ?>
                     </table>
+                    <h4>Playlists</h4>
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <!--<th>Owner</th>-->
+                        </tr>
+                        <?php foreach ($playlists as $playlist) : ?>
+                        <tr>
+                            <td><a href="index.php?action=view_playlist&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></td>
+                            <td><?php echo $playlist['category']; ?></td>
+                            <!--<td><?php echo $playlist['userID']; ?></td>-->
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
                 </div>
             </div>
         </section>
+        <?php include 'footer.php';?>
     </body>
 </html>

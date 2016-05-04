@@ -19,32 +19,22 @@
     </head>
     <body>
         <?php include '../view/header.php';?>
-        <section id="container-fluid">
-            <div id="row">
+        <section class="container-fluid">
+            <div class="row">
                 <div class="container">
                     <h1><?php echo $song['title']; ?></h1>
-                    <h2>Artist: <?php echo $song['artist']; ?></h2>
-                    <h3>Genre: <?php echo $song['genre']; ?></h3>
+                    <h2>Artist: <a href="index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><?php echo $song['artist']; ?></a></h2>
+                    <h3>Genre: <a href="index.php?action=view_songs_by_genre&genre=<?php echo $song['genre']; ?>"><?php echo $song['genre']; ?></a></h3>
                     <br>
-                    <h3>Add Song to Playlist</h3>
-                    <div>
-                        <form action="../playlistsong_manager/index.php" method="post" class="form-horizontal">
-                            <input type="hidden" name="action" value="add_playlistsong">
-                            <input type="hidden" name="songID" value="<?php echo $song['songID']; ?>">
-                            <select name="playlistID" class="form-control">
-                                <?php foreach ($playlists as $playlist) : ?>
-                                <?php echo $playlist['playlistID']; ?>
-                                <option value="<?php $playlist['playlistID']; ?>"><?php $playlist['name']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                            <br>
-                            <input type="submit" value="Submit" class="btn btn-default">
-                        </form>
-                    </div>
                     <h3></h3>
                 </div>
             </div>
+            <div class="row">
+                <div class="container">
+                    <?php include 'song_add_to_playlist_form.php'; ?>
+                </div>
+            </div>
         </section>
-        <?php        include_once '../view/footer.php'; ?>
+        <?php include_once '../view/footer.php'; ?>
     </body>
 </html>

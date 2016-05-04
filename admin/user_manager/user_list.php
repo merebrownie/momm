@@ -27,11 +27,13 @@
                         <th>#</th>
                         <th>Email</th>
                         <th></th>
+                        <th></th>
                         <?php foreach ($users as $user) : ?>
                         <tr>
                             <td><?php echo $user['userID']; ?></td>
                             <td><?php echo $user['email']; ?></td>
                             <td><a href="index.php?action=view_user_from_id&userID=<?php echo $user['userID']; ?>">View</a></td>
+                            <td><a href="index.php?action=delete_user_from_id&userID=<?php echo $user['userID']; ?>">Delete</a></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

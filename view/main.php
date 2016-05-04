@@ -21,11 +21,16 @@
         <?php include_once 'view/header.php'; ?>
         <section class="container-fluid">
             <div class="row">
+                <div class="col-md-12">
+                    <h1>Announcements</h1>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-8 col-sm-8">                        
                     <h3>News Feed</h3>
                     <ul class="list-group">
                         <?php foreach ($events as $event) : ?>
-                        <li class="list-group-item">                            <?php echo $event['timestamp']; ?> <?php echo $event['message']; ?>
+                        <li class="list-group-item"> <?php echo $event['timestamp']; ?> <?php echo $event['message']; ?>
                         </li>
                     <?php endforeach; ?>
                     </ul>
@@ -38,15 +43,19 @@
                             <?php foreach ($songs as $song) : ?>
                                 <?php if ($song['songID'] == $popular_song['songID']) : ?>
                                     <li class="list-group-item">
-                                        <h4 class="list-group-item-heading"><?php echo $song['title']; ?></h4>
-                                        <p class="list-group-item-text"><?php echo $song['artist']; ?></p>
+                                        <a href="song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><h4 class="list-group-item-heading"><?php echo $song['title']; ?></h4></a>
+                                        <a href="song_manager/index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><p class="list-group-item-text"><?php echo $song['artist']; ?></p></a>
                                     </li>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                     </ol>
-                    <h2><a href="/momm/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h2>
-                        <h2><a href="/momm/song_manager/index.php?action=list_songs">Song Manager</a></h2>
+                    <h3>Control Panel</h3>
+                    <div class="list-group">
+                        <h4 class="list-group-item"><a href="/momm/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h2>
+                        <h4 class="list-group-item"><a href="/momm/song_manager/index.php?action=list_songs">Song Manager</a></h2>
+                    </div>
+                    
                 </div>
             </div>
         </section>

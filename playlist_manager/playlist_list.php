@@ -22,16 +22,34 @@
         <section id="container-fluid">
             <div id="row">
                 <div class="container">
-                    <h1>Playlists</h1>
-                    <table class="table">
+                    <h1>My Playlists</h1>
+                    <table class="table table-striped">
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>
-                            <td><h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></h3></td>
+                            <td>
+                                <h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></h3>
+                                <!--<p>Category: <?php echo $playlist['category']; ?></p>-->
+                            </td>
                             <td><a href="../playlist_manager/index.php?action=delete_playlist&playlistID=<?php echo $playlist['playlistID']; ?>">Delete</a></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>
+                    <h1>Recommended Playlists</h1>
+                    <table class="table table-striped">
+                        <?php foreach ($other_playlists as $other_playlist) : ?>
+                            <?php if ($userID != $other_playlist['userID']) : ?>
+                                <tr>
+                                    <td><h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $other_playlist['playlistID']; ?>"><?php echo $other_playlist['name']; ?></a></h3></td>
+                                </tr>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </table>
                     
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <?php include 'playlist_add.php'; ?>
                 </div>
             </div>
         </section>

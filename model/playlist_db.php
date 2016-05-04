@@ -42,7 +42,21 @@ function get_playlists_by_userid($userID) {
     return $playlists;
 }
 
-function get_playlists_by_category($category) {
+function get_users_playlists_by_category($userID, $category) {
+    global $db;
+    $query = 'SELECT * FROM playlists 
+              WHERE userID = :userID 
+              AND category = :category';
+    $statement = $db->prepare($query);
+    $statement->bindValue(":userID", $userID);
+    $statement->bindValue(":category", $category);
+    $statement->execute();
+    $playlists = $statement->fetchAll();
+    $statement->closeCursor();
+    return $playlists;
+}
+
+function get_all_playlists_by_category($category) {
     global $db;
     $query = 'SELECT * FROM playlists
               WHERE category = :category';

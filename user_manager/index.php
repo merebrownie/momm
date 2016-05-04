@@ -84,6 +84,7 @@ if ($action == 'show_login_form') {
     if ($password == $passwordcopy) {
         // change password in database
         $result = change_password($userID, $password);
+        $user = get_user_by_id($userID);
         include 'user.php';
     } else {
         $error_message = 'Passwords do not match, try again.';

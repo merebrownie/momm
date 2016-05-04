@@ -11,7 +11,7 @@
         $db = new PDO($dsn, $username);
     } catch (PDOException $e) {
         $error_message = $e->getMessage();
-        include('errors/database_error.php');
+        include('../errors/database_error.php');
         exit();
     }
 ?>

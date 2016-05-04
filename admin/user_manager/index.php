@@ -36,7 +36,8 @@ if ($action == 'show_login_form') {
     if ($password == $passwordcopy) {
         // add user to database
         add_user($name, $email, $password);
-        include 'login.php';
+        $users = get_users();
+        include 'user_list.php';
     } else {
         $error_message = 'Passwords do not match, try again.';
         include 'login.php';
@@ -118,11 +119,25 @@ if ($action == 'show_login_form') {
     if ($password == $passwordcopy) {
         // change password in database
         $result = change_password($other_userID, $password);
+        $user = get_user_by_id($other_userID);
         include 'user.php';
     } else {
         $error_message = 'Passwords do not match, try again.';
         include 'user.php';
         include '../errors/error.php';
     }
+} elseif ($action == 'delete_user_from_id') {
+    $other_userID = filter_input(INPUT_POST, 'userID', FILTER_VALIDATE_INT);
+    if ($other_userID === NULL) {
+        $other_userID = filter_input(INPUT_GET, 'userID', FILTER_VALIDATE_INT);
+    }
+    
+    // make sure user is admin
+    $user = get_user_by_id($userID);
+    if ($user['admin'] == 1) {
+        delete_user($other_userID);
+    }
+    $users = get_users();
+    include 'user_list.php';
 }
 ?>

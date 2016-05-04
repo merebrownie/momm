@@ -19,8 +19,8 @@
     </head>
     <body>
         <?php include_once '../view/header.php';?>
-        <section id="container-fluid">
-            <div id="row">
+        <section class="container-fluid">
+            <div class="row">
                 <div class="container">
                     <h1>Songs</h1>
                     <table class="table table-hover table-striped table-responsive">
@@ -37,10 +37,14 @@
                         </tr>
                         <?php endforeach; ?>
                     </table>
-                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
+                    <?php include 'song_add.php'; ?>
                 </div>
             </div>
         </section>
-        <?php        include_once '../view/footer.php'; ?>
+        <?php include_once '../view/footer.php'; ?>
     </body>
 </html>

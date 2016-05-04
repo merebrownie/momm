@@ -31,6 +31,7 @@ if ($action == 'show_add_playlistsong_form') {
         $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
     }
     $playlist = get_playlist_by_id($playlistID);
+    
     $songs = get_songs();
     $playlists = get_playlists_by_userid($userID);
     include 'playlistsong_add.php';
@@ -47,18 +48,25 @@ if ($action == 'show_add_playlistsong_form') {
     if ($songID === NULL) {
         $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
     }
-    // add playlistsong to database
-    add_playlistsong($playlistID, $songID);
-    // add event to eventdb
+    
+    // make sure user is owner
     $playlist = get_playlist_by_id($playlistID);
     $song = get_song_by_id($songID);
-    $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'];
-    add_event('playlistsong', $message);
-    $playlists = get_playlists_by_userid($userID);
-    $songs = get_songs();
-    $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
-    include 'playlist.php';
-    include 'playlistsong_add.php';
+    if ($userID == $playlist['userID'] || $user['admin'] == 1) {
+        // add playlistsong to database
+        add_playlistsong($playlistID, $songID);
+        // add event to eventdb
+        $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'];
+        add_event('playlistsong', $message);
+        $playlists = get_playlists_by_userid($userID);
+        $songs = get_songs();
+        $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+        include 'playlist.php';
+    } else {
+        $error_message = 'Must be owner to edit playlist';
+        include '../errors/error.php';
+    }
+    
 } elseif ($action == 'show_playlistsongs') {
     
     $user = get_user_by_id($userID);
@@ -71,7 +79,6 @@ if ($action == 'show_add_playlistsong_form') {
     $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
     $songs = get_songs();
     include 'playlist.php';
-    include 'playlistsong_add.php';
 } elseif ($action == 'delete_playlistsong') {
     $user = get_user_by_id($userID);
     $playlists = get_playlists_by_userid($userID);
@@ -98,6 +105,5 @@ if ($action == 'show_add_playlistsong_form') {
         $songs = get_songs();
         $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
         include 'playlist.php';
-        include 'playlistsong_add.php';
     }
 }

@@ -22,7 +22,7 @@
                 <div class="container">
                     <h3>Search Results <label class="label label-default label-success"><?php echo $search; ?></label></h3>
                     <h4>Songs</h4>
-                    <table class="table">
+                    <table class="table table-responsive table-hover table-striped">
                         <tr>
                             <th>Title</th>
                             <th>Artist</th>
@@ -30,14 +30,14 @@
                         </tr>
                         <?php foreach ($songs as $song) : ?>
                         <tr>
-                            <td><a href="index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
-                            <td><a href="index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><?php echo $song['artist']; ?></a></td>
-                            <td><a href="index.php?action=view_songs_by_genre&genre=<?php echo $song['genre']; ?>"><?php echo $song['genre']; ?></a></td>
+                            <td><a href="song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
+                            <td><a href="song_manager/index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><?php echo $song['artist']; ?></a></td>
+                            <td><a href="song_manager/index.php?action=view_songs_by_genre&genre=<?php echo $song['genre']; ?>"><?php echo $song['genre']; ?></a></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>
                     <h4>Playlists</h4>
-                    <table class="table">
+                    <table class="table table-responsive table-hover table-striped">
                         <tr>
                             <th>Name</th>
                             <th>Category</th>
@@ -45,9 +45,8 @@
                         </tr>
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>
-                            <td><a href="index.php?action=view_playlist&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></td>
-                            <td><?php echo $playlist['category']; ?></td>
-                            <!--<td><?php echo $playlist['userID']; ?></td>-->
+                            <td><a href="playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></td>
+                            <td><a href="playlist_manager/index.php?action=view_playlists_by_category&category=<?php echo $playlist['category']; ?>"><?php echo $playlist['category']; ?></a></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

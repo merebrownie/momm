@@ -43,6 +43,6 @@
                 </div>
             </div>
         </section>
-        <?php        include_once '../../view/footer.php'; ?>
+        <?php include_once '../../view/footer.php'; ?>
     </body>
 </html>

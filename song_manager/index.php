@@ -45,7 +45,6 @@ if ($action == 'show_add_song_form') {
 } elseif ($action == 'list_songs') {
     $songs = get_songs();
     include 'song_list.php';
-    include 'song_add.php';
 } elseif ($action == 'view_song') {
 
     $user = get_user_by_id($userID);
@@ -64,7 +63,6 @@ if ($action == 'show_add_song_form') {
     }
     $songs = get_songs_by_artist($artist);
     include 'song_list.php';
-    include_once 'song_add.php';
 } elseif ($action == 'view_songs_by_genre') {
     $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
     if ($genre === NULL) {
@@ -72,13 +70,31 @@ if ($action == 'show_add_song_form') {
     }
     $songs = get_songs_by_genre($genre);
     include 'song_list.php';
-    include_once 'song_add.php';
 } elseif ($action == 'view_songs_in_order') { 
     $songs = get_songs_in_order();
     include ' view/main.php';
-}elseif ($action == 'list_popular_songs') {
+} elseif ($action == 'list_popular_songs') {
     $songs = get_songs();
     $popular_songs = get_popular_songs();
     include 'view/main.php';
+} elseif ($action == 'add_song_to_playlist') {
+    $user = get_user_by_id($userID);
+    
+    $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
+    if ($playlistID === NULL) {
+        $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
+    }
+    
+    $songID = filter_input(INPUT_POST, 'songID', FILTER_VALIDATE_INT);
+    if ($songID === NULL) {
+        $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
+    }
+    add_playlistsong($playlistID, $songID);
+    $playlists = get_playlists_by_userid($userID);
+    $songs = get_songs();
+    $song = get_song_by_id($songID);
+    $playlist = get_playlist_by_id($playlistID);
+    $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+    include '../playlistsong_manager/playlist.php';
 }
 ?>

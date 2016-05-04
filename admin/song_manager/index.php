@@ -99,5 +99,24 @@ if ($action == 'show_add_song_form') {
     $songs = get_songs();
     include 'song_list.php';
     include 'song_add.php';
+} elseif ($action == 'add_song_to_playlist') {
+    $user = get_user_by_id($userID);
+    
+    $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
+    if ($playlistID === NULL) {
+        $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
+    }
+    
+    $songID = filter_input(INPUT_POST, 'songID', FILTER_VALIDATE_INT);
+    if ($songID === NULL) {
+        $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
+    }
+    add_playlistsong($playlistID, $songID);
+    $playlists = get_playlists();
+    $songs = get_songs();
+    $song = get_song_by_id($songID);
+    $playlist = get_playlist_by_id($playlistID);
+    $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+    include '../playlistsong_manager/playlist.php';
 }
 ?>

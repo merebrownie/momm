@@ -26,7 +26,8 @@ function add_event($type, $message) {
 function get_events_by_timestamp() {
     global $db;
     $query = 'SELECT * FROM events '
-            . 'ORDER BY timestamp DESC';
+            . 'ORDER BY timestamp DESC '
+            . 'LIMIT 30';
     $statement = $db->prepare($query);
     $statement->execute();
     $events = $statement->fetchAll();

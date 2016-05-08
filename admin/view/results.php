@@ -21,7 +21,7 @@
                 <div class="container">
                     <h3>Search Results <label class="label label-default label-success"><?php echo $search; ?></label></h3>
                     <h4>Songs</h4>
-                    <table class="table">
+                    <table class="table table-responsive table-hover table-striped">
                         <tr>
                             <th>Title</th>
                             <th>Artist</th>
@@ -40,13 +40,11 @@
                         <tr>
                             <th>Name</th>
                             <th>Category</th>
-                            <!--<th>Owner</th>-->
                         </tr>
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>
                             <td><a href="index.php?action=view_playlist&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></td>
-                            <td><?php echo $playlist['category']; ?></td>
-                            <!--<td><?php echo $playlist['userID']; ?></td>-->
+                            <td><a href="playlist_manager/index.php?action=view_playlists_by_category&category=<?php echo $playlist['category']; ?>"><?php echo $playlist['category']; ?></a></td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

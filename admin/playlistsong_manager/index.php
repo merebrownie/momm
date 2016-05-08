@@ -40,8 +40,6 @@ if ($action == 'show_add_playlistsong_form') {
     include 'playlistsong_add.php';
     
 } elseif ($action == 'add_playlistsong') {
-
-    $user = get_user_by_id($userID);
     
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
     if ($playlistID === NULL) {
@@ -60,11 +58,7 @@ if ($action == 'show_add_playlistsong_form') {
         // add playlist song to db
         add_playlistsong($playlistID, $songID);
         // log event
-        if ($user['admin'] == 1) {
-            $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by Admin.';
-        } else {
-            $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'];
-        }
+        $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by Admin.';
         add_event('playlistsong', $message);
         $playlists = get_playlists();
         $songs = get_songs();
@@ -76,9 +70,7 @@ if ($action == 'show_add_playlistsong_form') {
     }
     
 } elseif ($action == 'show_playlistsongs') {
-    
-    $user = get_user_by_id($userID);
-    
+        
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
     if ($playlistID === NULL) {
         $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);

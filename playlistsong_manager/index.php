@@ -60,7 +60,7 @@ if ($action == 'show_add_playlistsong_form') {
         if ($user['admin'] == 1) {
             $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by Admin.';
         } else {
-            $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'];
+            $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'] . '.';
         }
         add_event('playlistsong', $message);
         $playlists = get_playlists_by_userid($userID);
@@ -69,6 +69,10 @@ if ($action == 'show_add_playlistsong_form') {
         include 'playlist.php';
     } else {
         $error_message = 'Must be owner to edit playlist.';
+        $playlists = get_playlists_by_userid($userID);
+        $songs = get_songs();
+        $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+        include 'playlist.php';
         include '../errors/error.php';
     }
     
@@ -105,7 +109,7 @@ if ($action == 'show_add_playlistsong_form') {
         if ($user['admin'] == 1) {
             $message = $song['title'] . ' by ' . $song['artist'] . ' removed from ' . $playlist['name'] . ' by Admin.';
         } else {
-            $message = $song['title'] . ' by ' . $song['artist'] . ' removed from ' . $playlist['name'] . ' by ' . $user['name'];
+            $message = $song['title'] . ' by ' . $song['artist'] . ' removed from ' . $playlist['name'] . ' by ' . $user['name'] . '.';
         }
         add_event('playlistsong', $message);
         $songs = get_songs();

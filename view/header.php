@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search" 
-                          action="/momm/index.php" method="post">
+                          action="index.php" method="post">
                         <div class="form-group">
                             <input type="hidden" name="action" value="search">
                             <input type="text" class="form-control" name="search" placeholder="Search">
@@ -59,28 +59,14 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/momm/playlist_manager/">My Music</a></li>
                                 <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
-                                <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
                             </ul>
-                           
-<!--                            <ul class="dropdown-menu">
-                                <li><a href="/momm/playlist_manager/">My Music</a></li>
-                                <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
-                                <li><a href="#">Interactions</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
-                            </ul>-->
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        
-<!--        <script src="<?php echo $path; ?>/momm/js/jquery-2.2.0.min-2.js" type="text/javascript"></script>
-        <script src="<?php echo $path; ?>/momm/js/jquery.easing.min.js" type="text/javascript"></script>
-        <script src="<?php echo $path; ?>/momm/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo $path; ?>/momm/bootstrap/js/npm.js" type="text/javascript"></script>-->
         
     </body>
 </html>

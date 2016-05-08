@@ -37,11 +37,10 @@
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="/momm/index.php">Home <span class="sr-only">(current)</span></a>
+                            <a href="/momm/admin/index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search" 
-                          action="index.php" method="post">
+                    <form class="navbar-form navbar-left" role="search" action="index.php" method="post">
                         <div class="form-group">
                             <input type="hidden" name="action" value="search">
                             <input type="text" class="form-control" name="search" placeholder="Search">
@@ -57,7 +56,6 @@
                                 <li><a href="/momm/admin/user_manager/">User Manager</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/admin/user_manager/index.php?action=view_user">Account Settings</a></li>
-                                <!--<li><a href="#">Interactions</a></li>-->
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
                             </ul>

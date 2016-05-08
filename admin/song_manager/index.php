@@ -43,7 +43,7 @@ if ($action == 'show_add_song_form') {
     // add user to database
     add_song($title, $artist, $genre);
     // add event to db
-    $message = 'New Song: ' . $title . ' by ' . $artist;
+    $message = 'New Song: ' . $title . ' by ' . $artist . '.';
     add_event('song', $message);
     $songs = get_songs();
     $xml = get_top_tracks_xml();
@@ -136,7 +136,7 @@ if ($action == 'show_add_song_form') {
     add_event('playlistsong', $message);
     include '../playlistsong_manager/playlist.php';
     
-} elseif ($action = 'get_top_songs') {
+} elseif ($action == 'get_top_songs') {
     $xml = get_top_tracks_xml();
     include 'top_songs.php';
 }

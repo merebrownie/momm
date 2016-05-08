@@ -84,6 +84,18 @@ function get_playlists_by_name($name) {
     return $playlists;
 }
 
+function get_new_playlists() {
+    global $db;
+    $query = 'SELECT * FROM playlists '
+            . 'ORDER BY timestamp DESC '
+            . 'LIMIT 5';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $new_playlists = $statement->fetchAll();
+    $statement->closeCursor();
+    return $new_playlists;
+}
+
 function get_playlists() {
     global $db;
     $query = 'SELECT * FROM playlists';

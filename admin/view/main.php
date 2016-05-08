@@ -13,9 +13,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="css/momm.css">
+        <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../css/momm.css">
     </head>
     <body>
         <?php include_once 'header.php'; ?>
@@ -37,6 +37,12 @@
                                                 
                 </div>
                 <div class="col-md-4 col-sm-4">
+                    <h3>Admin Panel</h3>
+                    <div class="list-group">
+                        <h4><a class="list-group-item" href="/momm/admin/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h4>
+                        <h4><a class="list-group-item" href="/momm/admin/song_manager/index.php?action=list_songs">Song Manager</a></h4>
+                        <h4><a class="list-group-item" href="/momm/admin/user_manager/index.php?action=list_users">User Manager</a></h4>
+                    </div>
                     <h3>Popular Songs</h3>
                     <ol class="list-group">
                         <?php foreach ($popular_songs as $popular_song) : ?>
@@ -50,18 +56,29 @@
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                     </ol>
-                    <h3>Admin Panel</h3>
-                    <div class="list-group">
-                        <h4><a class="list-group-item" href="/momm/admin/playlist_manager/index.php?action=show_playlists">Playlist Manager</a></h4>
-                        <h4><a class="list-group-item" href="/momm/admin/song_manager/index.php?action=list_songs">Song Manager</a></h4>
-                        <h4><a class="list-group-item" href="/momm/admin/user_manager/index.php?action=list_users">User Manager</a></h4>
-                    </div>
-                    
+                    <h3>New Playlists</h3>
+                    <ol class="list-group">
+                        <?php foreach ($new_playlists as $new_playlist) : ?>
+                        <li class="list-group-item">
+                            <a href="playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $new_playlist['playlistID']; ?>"><h4 class="list-group-item-heading"><?php echo $new_playlist['name']; ?></h4></a>
+                            <a href="playlist_manager/index.php?action=view_playlists_by_category&category=<?php echo $new_playlist['category']; ?>"><p class="list-group-item-text"><?php echo $new_playlist['category']; ?></p></a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ol>
+                    <h3>New Songs</h3>
+                    <ol class="list-group">
+                        <?php foreach ($new_songs as $new_song) : ?>
+                        <li class="list-group-item">
+                            <a href="song_manager/index.php?action=view_song&songID=<?php echo $new_song['songID']; ?>"><h4 class="list-group-item-heading"><?php echo $new_song['title']; ?></h4></a>
+                            <a href="song_manager/index.php?action=view_songs_by_artist&artist=<?php echo $new_song['artist']; ?>"><p class="list-group-item-text"><?php echo $new_song['artist']; ?></p></a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ol>
                     
                 </div>
             </div>
         </section>
-        <?php include_once 'view/footer.php'; ?>
+        <?php include_once '../view/footer.php'; ?>
     </body>
 </html>
 

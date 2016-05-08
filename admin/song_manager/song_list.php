@@ -39,7 +39,6 @@
                                     <input type="hidden" name="songID" value="<?php echo $song['songID']; ?>">
                                     <input type="submit" value="Delete" class="btn btn-danger">
                                 </form>
-                                <!--<a href="index.php?action=delete_song&songID=<?php echo $song['songID']; ?>">Delete</a>-->
                             </td>
                         </tr>
                         <?php endforeach; ?>

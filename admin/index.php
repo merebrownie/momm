@@ -11,20 +11,20 @@ require('../model/user_db.php');
 require('../model/song_db.php');
 require '../model/playlist_db.php';
 require '../model/playlistsong_db.php';
+require '../model/event_db.php';
 
-$path = $_SERVER['DOCUMENT_ROOT'] . '/momm/';
 if (!isset($_SESSION['userID'])) {
-    header('Location:user_manager/index.php') ;
+    header('Location:../user_manager/index.php') ;
 } else {
-//    header('Location:view/main.php');
-    include 'view/main.php';
+    $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
 } 
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');
     if ($action === NULL) {
-        $action = 'search'; // default action
+        $action = 'show_main'; // default action
     }
 }
 
@@ -35,7 +35,16 @@ if ($action == 'search') {
     // search songs
     $songs = search_songs($search);
     $playlists = search_playlists($search);
-    include '../view/results.php';
+    include 'view/results.php';
+    
+} elseif ($action == 'show_main') {
+    $songs = get_songs();
+    $popular_songs = get_popular_songs();
+    $events = get_events_by_timestamp();
+    $new_playlists = get_new_playlists();
+    $new_songs = get_new_songs();
+    include 'view/main.php';
+    
 }
 
 ?>

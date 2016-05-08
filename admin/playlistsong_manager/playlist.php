@@ -44,9 +44,8 @@
                                                     <input type="hidden" name="action" value="delete_playlistsong">
                                                     <input type="hidden" name="playlistID" value="<?php echo $playlistsong['playlistID']; ?>">
                                                     <input type="hidden" name="songID" value="<?php echo $playlistsong['songID']; ?>">
-                                                    <input type="submit" value="Delete Song" class="btn btn-danger">
+                                                    <input type="submit" value="Delete" class="btn btn-danger">
                                                 </form>
-                                                <!--<a href="../playlistsong_manager/index.php?action=delete_playlistsong&playlistID=<?php echo $playlistsong['playlistID']; ?>&songID=<?php echo $playlistsong['songID']; ?>">Delete Song</a>-->
                                             </td>
                                         </tr>
                                     <?php endif; ?>    

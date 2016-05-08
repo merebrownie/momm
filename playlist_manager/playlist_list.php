@@ -26,7 +26,14 @@
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>
                             <td><h3><a href="../playlistsong_manager/index.php?action=show_playlistsongs&playlistID=<?php echo $playlist['playlistID']; ?>"><?php echo $playlist['name']; ?></a></h3></td>
-                            <td><a href="../playlist_manager/index.php?action=delete_playlist&playlistID=<?php echo $playlist['playlistID']; ?>">Delete</a></td>
+                            <td>
+                                <form action="../playlist_manager/index.php" method="post">
+                                    <input type="hidden" name="action" value="delete_playlist">
+                                    <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </form>
+                                <!--<a href="../playlist_manager/index.php?action=delete_playlist&playlistID=<?php echo $playlist['playlistID']; ?>">Delete</a>-->
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

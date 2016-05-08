@@ -39,7 +39,6 @@
                         <tr>
                             <th>Name</th>
                             <th>Category</th>
-                            <!--<th>Owner</th>-->
                         </tr>
                         <?php foreach ($playlists as $playlist) : ?>
                         <tr>

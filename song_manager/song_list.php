@@ -39,6 +39,11 @@
             </div>
             <div class="row">
                 <div class="container">
+                    <?php include 'top_songs.php'; ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="container">
                     <?php include 'song_add.php'; ?>
                 </div>
             </div>

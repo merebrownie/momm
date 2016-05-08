@@ -16,8 +16,8 @@ require 'model/event_db.php';
 if (!isset($_SESSION['userID'])) {
     header('Location:user_manager/index.php') ;
 } else {
-    global $userID;
     $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
 }
 
 $action = filter_input(INPUT_POST, 'action');
@@ -39,9 +39,10 @@ if ($action == 'search') {
     $songs = get_songs();
     $popular_songs = get_popular_songs();
     $events = get_events_by_timestamp();
-    $user = get_user_by_id($userID);
+    $new_playlists = get_new_playlists();
+    $new_songs = get_new_songs();
     if ($user['admin'] == 1) {
-        include 'admin/view/main.php';
+        header('Location:admin/index.php');
     } else {
         include 'view/main.php';
     }

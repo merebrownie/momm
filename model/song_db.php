@@ -32,7 +32,8 @@ function get_song_by_id($songID) {
 
 function get_songs() {
     global $db;
-    $query = 'SELECT * FROM songs';
+    $query = 'SELECT * FROM songs '
+            . 'ORDER BY title';
     $statement = $db->prepare($query);
     $statement->execute();
     $songs = $statement->fetchAll();
@@ -43,7 +44,8 @@ function get_songs() {
 function get_songs_by_artist($artist) {
     global $db;
     $query = 'SELECT * FROM songs '
-            . 'WHERE artist = :artist';
+            . 'WHERE artist = :artist '
+            . 'ORDER BY title';
     $statement = $db->prepare($query);
     $statement->bindValue(':artist', $artist);
     $statement->execute();
@@ -55,13 +57,26 @@ function get_songs_by_artist($artist) {
 function get_songs_by_genre($genre) {
     global $db;
     $query = 'SELECT * FROM songs '
-            . 'WHERE genre = :genre';
+            . 'WHERE genre = :genre '
+            . 'ORDER BY title';
     $statement = $db->prepare($query);
     $statement->bindValue(':genre', $genre);
     $statement->execute();
     $songs = $statement->fetchAll();
     $statement->closeCursor();
     return $songs;
+}
+
+function get_new_songs() {
+    global $db;
+    $query = 'SELECT * FROM songs '
+            . 'ORDER BY timestamp DESC '
+            . 'LIMIT 5';
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $new_songs = $statement->fetchAll();
+    $statement->closeCursor();
+    return $new_songs;
 }
 
 function delete_song($songID) {
@@ -79,7 +94,8 @@ function search_songs($search) {
     $query = 'SELECT * FROM songs '
             . 'WHERE title LIKE :search '
             . 'OR artist LIKE :search '
-            . 'OR genre LIKE :search';
+            . 'OR genre LIKE :search '
+            . 'ORDER BY title';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':search', '%' . $search . '%');

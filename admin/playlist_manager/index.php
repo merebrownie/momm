@@ -28,9 +28,7 @@ if (!isset($_SESSION['userID'])) {
     $user = get_user_by_id($userID);
 }
 
-if (!isset($_SESSION['userID'])) {
-    include 'user_manager/login.php';
-} elseif ($action == 'show_add_playlist_form') {
+if ($action == 'show_add_playlist_form') {
     $songs = get_songs();
     include 'playlist_add.php';
     
@@ -43,11 +41,7 @@ if (!isset($_SESSION['userID'])) {
     // add playlist to database
     add_playlist($userID, $name, $category);
     // add event to eventdb
-    if ($user['admin'] == 0) {
-            $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . $user['name'] . '.';
-        } else {
-            $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . ' by Admin.';
-        }
+    $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . ' by Admin.';
     add_event('playlist', $message);
     
     $playlists = get_playlists();
@@ -62,8 +56,7 @@ if (!isset($_SESSION['userID'])) {
     if ($category === NULL) {
         $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
     }
-    $playlists = get_users_playlists_by_category($userID, $category);
-    $other_playlists = get_all_playlists_by_category($category);
+    $playlists = get_all_playlists_by_category($category);
     include 'playlist_list.php';
     
 } elseif ($action == 'delete_playlist') {
@@ -77,12 +70,7 @@ if (!isset($_SESSION['userID'])) {
         // delete playlist from db
         delete_playlist($playlistID);
         // log event to eventdb
-        if ($user['admin'] == 0) {
-            $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by ' . $user['name'];
-        } else {
-            $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by Admin.';
-        }
-        
+        $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by Admin.';
         add_event('playlist', $message);
     }
     $playlists = get_playlists();

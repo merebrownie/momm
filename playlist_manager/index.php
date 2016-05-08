@@ -55,7 +55,6 @@ if ($action == 'show_add_playlist_form') {
 } elseif ($action == 'show_playlists') {
     $playlists = get_playlists_by_userid($userID);
     $other_playlists = get_playlists();
-    $user = get_user_by_id($userID);
     include 'playlist_list.php';
     
 } elseif ($action == 'view_playlists_by_category') {

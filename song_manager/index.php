@@ -12,6 +12,7 @@ require('../model/song_db.php');
 require '../model/playlist_db.php';
 require '../model/playlistsong_db.php';
 require '../model/event_db.php';
+require '../model/chart_db.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -46,10 +47,12 @@ if ($action == 'show_add_song_form') {
     add_event('song', $message);
     
     $songs = get_songs();
+    $xml = get_top_tracks_xml();
     include 'song_list.php';
     
 } elseif ($action == 'list_songs') {
     $songs = get_songs();
+    $xml = get_top_tracks_xml();
     include 'song_list.php';
    
 } elseif ($action == 'view_song') {    
@@ -68,6 +71,7 @@ if ($action == 'show_add_song_form') {
         $artist = filter_input(INPUT_GET, 'artist', FILTER_SANITIZE_STRING);
     }
     $songs = get_songs_by_artist($artist);
+    $xml = get_top_tracks_xml();
     include 'song_list.php';
     
 } elseif ($action == 'view_songs_by_genre') {
@@ -76,6 +80,7 @@ if ($action == 'show_add_song_form') {
         $genre = filter_input(INPUT_GET, 'genre', FILTER_SANITIZE_STRING);
     }
     $songs = get_songs_by_genre($genre);
+    $xml = get_top_tracks_xml();
     include 'song_list.php';
     
 } elseif ($action == 'view_songs_in_order') { 
@@ -108,5 +113,9 @@ if ($action == 'show_add_song_form') {
     $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'] . '.';
     add_event('playlistsong', $message);
     include '../playlistsong_manager/playlist.php';
+    
+} elseif ($action == 'get_top_songs') {
+    $xml = get_top_tracks_xml();
+    include 'top_songs.php';
 }
 ?>

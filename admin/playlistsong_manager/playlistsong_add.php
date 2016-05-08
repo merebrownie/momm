@@ -7,7 +7,7 @@
 ?>
 
 <h3>Add Song to <?php echo $playlist['name']; ?></h3>
-<form action="index.php" method="post" class="form-horizontal">
+<form action="../playlistsong_manager/index.php" method="post" class="form-horizontal">
     <input type="hidden" name="action" value="add_playlistsong">
     <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
     <select name="songID" class="form-control">

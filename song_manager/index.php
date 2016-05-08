@@ -40,10 +40,17 @@ if ($action == 'show_add_song_form') {
     $artist = filter_input(INPUT_POST, 'artist', FILTER_SANITIZE_STRING);
     $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
     
-    // add user to database
-    add_song($title, $artist, $genre);
+    // check if genre entered
+    if ($genre == '') {
+        // add user to db
+        add_song($title, $artist, 'None');
+    } else {
+        // add user to database
+        add_song($title, $artist, $genre);
+    }
+    
     // add event to eventdb
-    $message = 'New Song: ' . $title . ' by ' . $artist;
+    $message = 'New Song: ' . $title . ' by ' . $artist . '.';
     add_event('song', $message);
     
     $songs = get_songs();

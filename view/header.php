@@ -22,7 +22,7 @@
                 <!--brand & toggle for mobile display-->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" 
-                            data-toggle="collapse" data-target="#" aria-expanded="false">
+                            data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search" 
-                          action="index.php" method="post">
+                          action="/momm/index.php" method="post">
                         <div class="form-group">
                             <input type="hidden" name="action" value="search">
                             <input type="text" class="form-control" name="search" placeholder="Search">

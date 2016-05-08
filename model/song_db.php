@@ -44,7 +44,7 @@ function get_songs() {
 function get_songs_by_artist($artist) {
     global $db;
     $query = 'SELECT * FROM songs '
-            . 'WHERE artist = :artist '
+            . 'WHERE artist LIKE :artist '
             . 'ORDER BY title';
     $statement = $db->prepare($query);
     $statement->bindValue(':artist', $artist);
@@ -57,7 +57,7 @@ function get_songs_by_artist($artist) {
 function get_songs_by_genre($genre) {
     global $db;
     $query = 'SELECT * FROM songs '
-            . 'WHERE genre = :genre '
+            . 'WHERE genre LIKE :genre '
             . 'ORDER BY title';
     $statement = $db->prepare($query);
     $statement->bindValue(':genre', $genre);

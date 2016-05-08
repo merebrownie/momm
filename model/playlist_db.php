@@ -63,7 +63,7 @@ function get_users_playlists_by_category($userID, $category) {
 function get_all_playlists_by_category($category) {
     global $db;
     $query = 'SELECT * FROM playlists
-              WHERE category = :category';
+              WHERE category LIKE :category';
     $statement = $db->prepare($query);
     $statement->bindValue(":category", $category);
     $statement->execute();

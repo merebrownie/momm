@@ -1,4 +1,9 @@
 <?php
+
+/* 
+ * by meredith browne
+ */
+
 session_start();
 
 require '../../model/database.php';
@@ -20,11 +25,10 @@ if (!isset($_SESSION['userID'])) {
     include 'user_manager/login.php';
 }  else {
     $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
 }
 
 if ($action == 'show_add_playlistsong_form') {
-
-    $user = get_user_by_id($userID);
     
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
     if ($playlistID === NULL) {
@@ -34,6 +38,7 @@ if ($action == 'show_add_playlistsong_form') {
     $songs = get_songs();
     $playlists = get_playlists_by_userid($userID);
     include 'playlistsong_add.php';
+    
 } elseif ($action == 'add_playlistsong') {
 
     $user = get_user_by_id($userID);
@@ -47,14 +52,29 @@ if ($action == 'show_add_playlistsong_form') {
     if ($songID === NULL) {
         $songID = filter_input(INPUT_GET, 'songID', FILTER_VALIDATE_INT);
     }
-    add_playlistsong($playlistID, $songID);
+    
+    // make sure user is owner or admin
     $playlist = get_playlist_by_id($playlistID);
-    // need to change to get_playlists_by_userid();
-    $playlists = get_playlists_by_userid($userID);
-    $songs = get_songs();
-    $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
-    include 'playlist.php';
-    include 'playlistsong_add.php';
+    $song = get_song_by_id($songID);
+    if ($userID == $playlist['userID'] || $user['admin'] == 1) {
+        // add playlist song to db
+        add_playlistsong($playlistID, $songID);
+        // log event
+        if ($user['admin'] == 1) {
+            $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by Admin.';
+        } else {
+            $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'];
+        }
+        add_event('playlistsong', $message);
+        $playlists = get_playlists();
+        $songs = get_songs();
+        $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+        include 'playlist.php';
+    } else {
+        $error_message = 'Must be owner to edit playlist.';
+        include '../errors/error.php';
+    }
+    
 } elseif ($action == 'show_playlistsongs') {
     
     $user = get_user_by_id($userID);
@@ -67,9 +87,9 @@ if ($action == 'show_add_playlistsong_form') {
     $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
     $songs = get_songs();
     include 'playlist.php';
-    include 'playlistsong_add.php';
+
+    
 } elseif ($action == 'delete_playlistsong') {
-    $user = get_user_by_id($userID);
     $playlists = get_playlists_by_userid($userID);
     
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
@@ -99,6 +119,5 @@ if ($action == 'show_add_playlistsong_form') {
         $songs = get_songs();
         $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
         include 'playlist.php';
-        include 'playlistsong_add.php';
     }
 }

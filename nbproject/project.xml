@@ -6,6 +6,7 @@
             <name>momm</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>php</word>
             <word>Playlist</word>
         </spellchecker-wordlist>
     </configuration>

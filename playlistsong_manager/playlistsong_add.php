@@ -1,3 +1,9 @@
+<?php
+/*
+ * by meredith browne
+ */
+?>
+
 <h3>Add Song to <?php echo $playlist['name']; ?></h3>
 <form action="index.php" method="post" class="form-horizontal">
     <input type="hidden" name="action" value="add_playlistsong">

@@ -1,3 +1,11 @@
+<?php
+
+/* 
+ * by meredith browne
+ */
+
+?>
+
 <h1>New Song</h1>
     <div>
         <form action="index.php" method="post" class="form-horizontal">

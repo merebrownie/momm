@@ -1,4 +1,9 @@
 <?php
+
+/* 
+ * by meredith browne
+ */
+
 session_start();
 
 require('../../model/database.php');
@@ -92,7 +97,7 @@ if ($action == 'show_login_form') {
     } else {
         $error_message = 'Passwords do not match, try again.';
         include 'user.php';
-        include '../errors/error.php';
+        include '../../errors/error.php';
     }
 } elseif ($action == 'list_users') {
     $users = get_users();
@@ -124,7 +129,7 @@ if ($action == 'show_login_form') {
     } else {
         $error_message = 'Passwords do not match, try again.';
         include 'user.php';
-        include '../errors/error.php';
+        include '../../errors/error.php';
     }
 } elseif ($action == 'delete_user_from_id') {
     $other_userID = filter_input(INPUT_POST, 'userID', FILTER_VALIDATE_INT);

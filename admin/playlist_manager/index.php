@@ -1,4 +1,9 @@
 <?php
+
+/* 
+ * Tby meredith browne
+ */
+
 session_start();
 
 require('../../model/database.php');
@@ -20,14 +25,15 @@ if (!isset($_SESSION['userID'])) {
     include '../user_manager/login.php';
 } else {
     $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
 }
 
 if (!isset($_SESSION['userID'])) {
     include 'user_manager/login.php';
 } elseif ($action == 'show_add_playlist_form') {
-    $user = get_user_by_id($userID);
     $songs = get_songs();
     include 'playlist_add.php';
+    
 } elseif ($action == 'add_playlist') {
     
     // get form data
@@ -37,44 +43,50 @@ if (!isset($_SESSION['userID'])) {
     // add playlist to database
     add_playlist($userID, $name, $category);
     // add event to eventdb
-    $message = 'New Playlist: ' . $name . ' in category ' . $category;
+    if ($user['admin'] == 0) {
+            $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . $user['name'] . '.';
+        } else {
+            $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . ' by Admin.';
+        }
     add_event('playlist', $message);
     
     $playlists = get_playlists();
     include 'playlist_list.php';
+    
 } elseif ($action == 'show_playlists') {
     $playlists = get_playlists();
-    $user = get_user_by_id($userID);
     include 'playlist_list.php';
-    include 'playlist_add.php';
-} elseif ($action == 'show_all_playlists') {
-    $user = get_user_by_id($userID);
     
-    $playlists = get_playlists();
+}  elseif ($action == 'view_playlists_by_category') {
+    $category = filter_input(INPUT_POST, 'category', FILTER_SANITIZE_STRING);
+    if ($category === NULL) {
+        $category = filter_input(INPUT_GET, 'category', FILTER_SANITIZE_STRING);
+    }
+    $playlists = get_users_playlists_by_category($userID, $category);
+    $other_playlists = get_all_playlists_by_category($category);
     include 'playlist_list.php';
+    
 } elseif ($action == 'delete_playlist') {
     $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_VALIDATE_INT);
     if ($playlistID === NULL) {
         $playlistID = filter_input(INPUT_GET, 'playlistID', FILTER_VALIDATE_INT);
     }
     // make sure user is owner or admin
-    $user = get_user_by_id($userID);
     $playlist = get_playlist_by_id($playlistID);
     if ($userID == $playlist['userID'] || $user['admin'] == 1) {
         // delete playlist from db
         delete_playlist($playlistID);
         // log event to eventdb
-        if ($user['admin'] == 1) {
-            $message = 'Playlist: ' . $name . ' in category ' . $category . ' removed by ' . $user['name'];
+        if ($user['admin'] == 0) {
+            $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by ' . $user['name'];
         } else {
-            $message = 'Playlist: ' . $name . ' in category ' . $category . ' removed by Admin.';
+            $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by Admin.';
         }
         
         add_event('playlist', $message);
     }
-    $playlists = get_playlists_by_userid($userID);
+    $playlists = get_playlists();
     include 'playlist_list.php';
-    include 'playlist_add.php';
     
 }
 ?>

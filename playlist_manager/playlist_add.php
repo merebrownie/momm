@@ -1,3 +1,9 @@
+<?php
+/* 
+ * by meredith browne
+ */
+?>
+
 <h1>New Playlist</h1>
 <div>
     <form action="index.php" method="post">

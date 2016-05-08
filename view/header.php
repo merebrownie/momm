@@ -1,3 +1,9 @@
+<?php
+/* 
+ * by meredith browne
+ */
+?>
+
 <!DOCTYPE html>
 <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/'; ?>
 <html lang="en">
@@ -6,9 +12,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>M.O.M.M | Master of My Music</title>
-        <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/momm.css" rel="stylesheet" type="text/css"/>
+        <link href="/momm/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/momm/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="/momm/css/momm.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>-->
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -42,7 +48,14 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <?php if (isset($user)) {
+                                    echo $user['name'];
+                                } else {
+                                    echo 'User ';
+                                }?>
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/momm/playlist_manager/">My Music</a></li>
                                 <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
@@ -50,6 +63,14 @@
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
                             </ul>
+                           
+<!--                            <ul class="dropdown-menu">
+                                <li><a href="/momm/playlist_manager/">My Music</a></li>
+                                <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
+                                <li><a href="#">Interactions</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
+                            </ul>-->
                         </li>
                     </ul>
                 </div>

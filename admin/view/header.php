@@ -1,3 +1,11 @@
+<?php
+
+/*
+ * by meredith browne
+ */
+
+?>
+
 <!DOCTYPE html>
 <?php $path = $_SERVER['DOCUMENT_ROOT'] . '/momm/'; ?>
 <html lang="en">
@@ -6,9 +14,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>M.O.M.M | Master of My Music</title>
-        <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../css/momm.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../css/momm.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>-->
         <nav class="navbar navbar-inverse navbar-fixed-top">

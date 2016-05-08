@@ -1,4 +1,9 @@
 <?php
+
+/* 
+ * by meredith browne
+ */
+
 session_start();
 
 require('../model/database.php');
@@ -47,7 +52,7 @@ if ($action == 'show_login_form') {
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
     
     // get user from database
-    $user = get_user_by_email($email);
+    $user = get_user_by_email($email);    
     
     if ($user == false) {
         $error_message = "Email/password pair not found. Try again.";
@@ -62,8 +67,7 @@ if ($action == 'show_login_form') {
         setcookie('password', $password, $lifetime);
         session_start();
         $_SESSION['userID'] = $user['userID'];
-        print_r($_SESSION);
-        print_r($_SESSION['userID']);
+        
         header('Location:../index.php');
     }
 } elseif ($action == 'logout_user') {

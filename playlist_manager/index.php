@@ -1,4 +1,9 @@
 <?php
+
+/* 
+ * by meredith browne
+ */
+
 session_start();
 
 require('../model/database.php');
@@ -20,10 +25,10 @@ if (!isset($_SESSION['userID'])) {
     include '../user_manager/login.php';
 } else {
     $userID = $_SESSION['userID'];
+    $user = get_user_by_id($userID);
 }
 
 if ($action == 'show_add_playlist_form') {
-    $user = get_user_by_id($userID);
     $songs = get_songs();
     include 'playlist_add.php';
     
@@ -36,7 +41,11 @@ if ($action == 'show_add_playlist_form') {
     // add playlist to database
     add_playlist($userID, $name, $category);
     // add event to eventdb
-    $message = 'New Playlist: ' . $name . ' in category ' . $category;
+    if ($user['admin'] == 0) {
+            $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . $user['name'] . '.';
+        } else {
+            $message = 'New Playlist: ' . $name . ' in Category: ' . $category . ' by ' . ' by Admin.';
+        }
     add_event('playlist', $message);
     
     $playlists = get_playlists_by_userid($userID);
@@ -69,7 +78,12 @@ if ($action == 'show_add_playlist_form') {
         // delete playlist from db
         delete_playlist($playlistID);
         // add event to eventdb
-        $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed.';
+        if ($user['admin'] == 0) {
+            $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by ' . $user['name'];
+        } else {
+            $message = 'Playlist: ' . $playlist['name'] . ' in category ' . $playlist['category'] . ' removed by Admin.';
+        }
+        
         add_event('playlist', $message);
     }
     $playlists = get_playlists_by_userid($userID);

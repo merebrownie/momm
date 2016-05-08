@@ -1,6 +1,10 @@
-<!--<header class="row">
-    <?php // include '../view/header.php'; ?>
-</header>-->
+<?php
+
+/*
+ * by meredith browne
+ */
+
+?>
 
 <div class="row">
     <div class="container" id='error'>
@@ -11,7 +15,3 @@
         
     </div>
 </div>
-<!--
-<footer class="row">
-    <?php // include '../view/footer.php'; ?>
-</footer>-->

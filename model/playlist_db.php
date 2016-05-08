@@ -1,5 +1,9 @@
 <?php
 
+/* 
+ * by meredith browne
+ */
+
 function add_playlist($userID, $name, $category) {
     global $db;
     $query = "INSERT INTO playlists (userID, name, category)

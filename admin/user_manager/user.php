@@ -1,9 +1,7 @@
 <?php
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * by meredith browne
  */
 
 ?>
@@ -12,25 +10,23 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="css/momm.css">
+        <link href="../../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="stylesheet" href="../../css/momm.css">
     </head>
-    <body>
+    <body id="main">
         <?php include_once '../view/header.php'; ?>
         <section class="container-fluid">
             <div class="row">
                 <div class="container">
                     <h1>User Settings</h1>
-                    
-                    <h3><label class="label label-default">Name:    </label><?php echo $user['name']; ?></h3>
-                    <br>
-                    
-                    <h3><label class="label label-default">Email Address:   </label><?php echo $user['email']; ?></h3>
-                    <br>
-                    
-                    <h3><label class="label label-default">Password:    </label><?php echo $user['password']; ?></h3>
-                    
+                    <form>
+                        <h3>Name: <?php echo $user['name']; ?></h3>                      
+                        <br>                    
+                        <h3>Email Address:   <?php echo $user['email']; ?></h3>
+                        <br>                    
+                        <h3>Password:    <?php echo $user['password']; ?></h3>
+                    </form>
                 </div>
             </div>
             <div class="row">

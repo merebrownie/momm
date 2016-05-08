@@ -1,9 +1,7 @@
 <?php
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * by meredith browne
  */
 
 ?>
@@ -17,13 +15,13 @@
         <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="../../css/momm.css">
     </head>
-    <body>
+    <body id="main">
         <?php include '../view/header.php';?>
         <section class="container-fluid">
             <div class="row">
                 <div class="container">
                     <h1>Users</h1>
-                    <table class="table table-hover table-responsive">
+                    <table class="table table-hover table-responsive table-striped">
                         <th>#</th>
                         <th>Email</th>
                         <th></th>
@@ -33,7 +31,13 @@
                             <td><?php echo $user['userID']; ?></td>
                             <td><?php echo $user['email']; ?></td>
                             <td><a href="index.php?action=view_user_from_id&userID=<?php echo $user['userID']; ?>">View</a></td>
-                            <td><a href="index.php?action=delete_user_from_id&userID=<?php echo $user['userID']; ?>">Delete</a></td>
+                            <td>
+                                <form action="index.php" method="post">
+                                    <input type="hidden" name="action" value="delete_user_from_id">
+                                    <input type="hidden" name="userID" value="<?php echo $user['userID']; ?>">
+                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                </form>
+                            </td>
                         </tr>
                         <?php endforeach; ?>
                     </table>

@@ -1,9 +1,7 @@
 <?php
 
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * by meredith browne
  */
 
 ?>
@@ -40,7 +38,15 @@
                                             <td><a href="../song_manager/index.php?action=view_song&songID=<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></a></td>
                                             <td><a href="../song_manager/index.php?action=view_songs_by_artist&artist=<?php echo $song['artist']; ?>"><?php echo $song['artist']; ?></a></td>
                                             <td><a href="../song_manager/index.php?action=view_songs_by_genre&genre=<?php echo $song['genre']; ?>"><?php echo $song['genre']; ?></a></td>
-                                            <td><a href="../playlistsong_manager/index.php?action=delete_playlistsong&playlistID=<?php echo $playlistsong['playlistID']; ?>&songID=<?php echo $playlistsong['songID']; ?>">Delete Song</a></td>
+                                            <td>
+                                                <form action="index.php" method="post">
+                                                    <input type="hidden" name="action" value="delete_playlistsong">
+                                                    <input type="hidden" name="playlistID" value="<?php echo $playlistsong['playlistID']; ?>">
+                                                    <input type="hidden" name="songID" value="<?php echo $playlistsong['songID']; ?>">
+                                                    <input type="submit" value="Delete Song" class="btn btn-danger">
+                                                </form>
+                                                <!--<a href="../playlistsong_manager/index.php?action=delete_playlistsong&playlistID=<?php echo $playlistsong['playlistID']; ?>&songID=<?php echo $playlistsong['songID']; ?>">Delete Song</a>-->
+                                            </td>
                                         </tr>
                                     <?php endif; ?>    
                                 <?php endforeach; ?>

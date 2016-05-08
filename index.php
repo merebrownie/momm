@@ -1,4 +1,9 @@
 <?php 
+
+/* 
+ * by meredith browne
+ */
+
 session_start(); 
 
 require('model/database.php');
@@ -11,8 +16,10 @@ require 'model/event_db.php';
 if (!isset($_SESSION['userID'])) {
     header('Location:user_manager/index.php') ;
 } else {
+    global $userID;
     $userID = $_SESSION['userID'];
 }
+
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
     $action = filter_input(INPUT_GET, 'action');

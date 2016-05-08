@@ -1,9 +1,13 @@
 <?php
 
+/*
+ * by meredith browne
+ */
+
 function add_user($name, $email, $password) {
     global $db;
-    $query = "INSERT INTO users (name, email, password)
-              VALUES (:name, :email, :password)";    
+    $query = "INSERT INTO users (name, email, password) "
+            . "VALUES (:name, :email, :password)";    
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':name', $name);
@@ -13,6 +17,7 @@ function add_user($name, $email, $password) {
         $statement->closeCursor();
     } catch (PDOException $e) {
         $error_message = $e->getMessage();
+        error_log("DB Error: " . $error_message);
         display_db_error($error_message);
     }
 }
@@ -31,14 +36,21 @@ function get_user_by_id($userID) {
 
 function get_user_by_email($email) {
     global $db;
-    $query = 'SELECT * FROM users
-              WHERE email = :email';
-    $statement = $db->prepare($query);
-    $statement->bindValue(":email", $email);
-    $statement->execute();
-    $user = $statement->fetch();
-    $statement->closeCursor();
-    return $user;
+    $query = 'SELECT * FROM users '
+            . 'WHERE email = :email';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $user = $statement->fetch();
+        $statement->closeCursor();
+        return $user;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        error_log("DB Error: " . $error_message);
+        display_db_error($error_message);
+    }
+    
 }
 
 function get_users() {

@@ -1,8 +1,12 @@
 <?php
 
+/* 
+ * by meredith browne
+ */
+
 function add_playlistsong($playlistID, $songID) {
     global $db;
-    $query = "INSERT INTO playlistsongs (playlistID, songID)
+    $query = "INSERT INTO playlist_songs (playlistID, songID)
               VALUES (:playlistID, :songID)";
               
 //    try {
@@ -19,7 +23,7 @@ function add_playlistsong($playlistID, $songID) {
 
 function get_playlistsong_by_ids($playlistID, $songID) {
     global $db;
-    $query = 'SELECT * FROM playlistsongs
+    $query = 'SELECT * FROM playlist_songs
               WHERE playlistID = :playlistID AND userID = :userID';
     $statement = $db->prepare($query);
     $statement->bindValue(":playlistID", $playlistID);
@@ -32,7 +36,7 @@ function get_playlistsong_by_ids($playlistID, $songID) {
 
 function get_playlistsongs_by_playlistid($playlistID) {
     global $db;
-    $query = 'SELECT * FROM playlistsongs
+    $query = 'SELECT * FROM playlist_songs
               WHERE playlistID = :playlistID
               ORDER BY timestamp';
     $statement = $db->prepare($query);
@@ -45,7 +49,7 @@ function get_playlistsongs_by_playlistid($playlistID) {
 
 function get_playlistsongs_by_songid($songID) {
     global $db;
-    $query = 'SELECT * FROM playlistsongs
+    $query = 'SELECT * FROM playlist_songs
               WHERE songID = :songID';
     $statement = $db->prepare($query);
     $statement->bindValue(":songID", $songID);
@@ -57,7 +61,7 @@ function get_playlistsongs_by_songid($songID) {
 
 function delete_playlistsong($playlistID, $songID) {
     global $db;
-    $query = 'DELETE FROM playlistsongs
+    $query = 'DELETE FROM playlist_songs
               WHERE playlistID = :playlistID
               AND songID = :songID';
     $statement = $db->prepare($query);
@@ -70,7 +74,7 @@ function delete_playlistsong($playlistID, $songID) {
 function get_popular_songs() {
     global $db;
     $query = 'SELECT songID, COUNT(*) '
-            . 'FROM playlistsongs '
+            . 'FROM playlist_songs '
             . 'GROUP BY songID '
             . 'ORDER BY COUNT(*) DESC '
             . 'LIMIT 5';

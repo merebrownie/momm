@@ -57,7 +57,31 @@ if ($action == 'show_add_song_form') {
     $xml = get_top_tracks_xml();
     include 'song_list.php';
     
-} elseif ($action == 'list_songs') {
+} elseif ($action == 'add_song_from_playlist') {
+    // get form data
+    $title = filter_input(INPUT_POST, 'title', FILTER_SANITIZE_STRING);
+    $artist = filter_input(INPUT_POST, 'artist', FILTER_SANITIZE_STRING);
+    $genre = filter_input(INPUT_POST, 'genre', FILTER_SANITIZE_STRING);
+    $playlistID = filter_input(INPUT_POST, 'playlistID', FILTER_SANITIZE_NUMBER_INT);
+    // check if genre entered
+    if ($genre == '') {
+        // add user to db
+        add_song($title, $artist, 'None');
+    } else {
+        // add user to database
+        add_song($title, $artist, $genre);
+    }
+    
+    // add event to eventdb
+    $message = 'New Song: ' . $title . ' by ' . $artist . '.';
+    add_event('song', $message);
+    
+    $songs = get_songs();
+    $xml = get_top_tracks_xml();
+    $playlist = get_playlist_by_id($playlistID);
+    $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+    include '../playlistsong_manager/playlist.php';
+}elseif ($action == 'list_songs') {
     $songs = get_songs();
     $xml = get_top_tracks_xml();
     include 'song_list.php';
@@ -119,6 +143,7 @@ if ($action == 'show_add_song_form') {
     $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
     $message = $song['title'] . ' by ' . $song['artist'] . ' added to ' . $playlist['name'] . ' by ' . $user['name'] . '.';
     add_event('playlistsong', $message);
+    $xml = get_top_tracks_xml();
     include '../playlistsong_manager/playlist.php';
     
 } elseif ($action == 'get_top_songs') {

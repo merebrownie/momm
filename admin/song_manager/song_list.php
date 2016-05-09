@@ -37,7 +37,7 @@
                                 <form action="index.php" method="post">
                                     <input type="hidden" name="action" value="delete_song">
                                     <input type="hidden" name="songID" value="<?php echo $song['songID']; ?>">
-                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                    <input type="submit" value="Delete" class="btn btn-danger pull-right">
                                 </form>
                             </td>
                         </tr>

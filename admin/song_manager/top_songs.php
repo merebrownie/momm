@@ -22,8 +22,8 @@
         <input type="hidden" name="artist" value="<?php echo $song->artist->name; ?>">
         <td><?php echo $song->name; ?></td>
         <td><?php echo $song->artist->name; ?></td>
-        <td><input type="text" name="genre" class="form-control" required=""></td>
-        <td><input type="submit" value="Add" class="btn btn-default"></td>
+        <td><input type="text" name="genre" class="form-control"></td>
+        <td><input type="submit" value="Add" class="btn btn-default pull-right"></td>
     </form>
     </tr>
     <?php endforeach; ?>

@@ -1,7 +1,9 @@
 <?php
+
 /* 
  * by meredith browne
  */
+
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +40,7 @@
                             <a href="/momm/index.php">Home <span class="sr-only">(current)</span></a>
                         </li>
                     </ul>
+                    <?php if (isset($user)) : ?>
                     <form class="navbar-form navbar-left" role="search" 
                           action="/momm/index.php" method="post">
                         <div class="form-group">
@@ -49,11 +52,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <?php if (isset($user)) {
-                                    echo $user['name'];
-                                } else {
-                                    echo 'User ';
-                                }?>
+                                <?php echo $user['name']; ?>
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
@@ -61,9 +60,10 @@
                                 <li><a href="/momm/user_manager/index.php?action=view_user">Account Settings</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/momm/user_manager/index.php?action=logout_user">Logout</a></li>
-                            </ul>
+                            </ul>                                
                         </li>
                     </ul>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>

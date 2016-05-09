@@ -10,7 +10,7 @@
     <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
     <select name="songID" class="form-control">
             <?php foreach ($songs as $song) : ?>
-            <option value="<?php echo $song['songID']; ?>"><?php echo $song['title']; ?></option>
+            <option value="<?php echo $song['songID']; ?>"><?php echo $song['title'] . ' by ' . $song['artist']; ?></option>
             <?php endforeach; ?>
     </select>
     <br>

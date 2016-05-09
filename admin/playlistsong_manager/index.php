@@ -12,6 +12,7 @@ require '../../model/song_db.php';
 require '../../model/playlistsong_db.php';
 require '../../model/user_db.php';
 require '../../model/event_db.php';
+require '../../model/chart_db.php';
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -63,6 +64,7 @@ if ($action == 'show_add_playlistsong_form') {
         $playlists = get_playlists();
         $songs = get_songs();
         $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+        $xml = get_top_tracks_xml();
         include 'playlist.php';
     } else {
         $error_message = 'Must be owner to edit playlist.';
@@ -78,6 +80,7 @@ if ($action == 'show_add_playlistsong_form') {
     $playlist = get_playlist_by_id($playlistID);
     $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
     $songs = get_songs();
+    $xml = get_top_tracks_xml();
     include 'playlist.php';
 
     
@@ -110,6 +113,7 @@ if ($action == 'show_add_playlistsong_form') {
         add_event('playlistsong', $message);
         $songs = get_songs();
         $playlistsongs = get_playlistsongs_by_playlistid($playlistID);
+        $xml = get_top_tracks_xml();
         include 'playlist.php';
     }
 }

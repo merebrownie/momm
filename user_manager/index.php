@@ -36,12 +36,23 @@ if ($action == 'show_login_form') {
     
     // check if passwords match
     if ($password == $passwordcopy) {
-        // add user to database
-        add_user($name, $email, $password);
-        include 'login.php';
+        
+        // check if email already exists
+        $user = get_user_by_email($email);
+        if ($user == NULL) {
+            // add user to database
+            add_user($name, $email, $password);
+            include 'login.php';
+        } else {
+            unset($user);
+            $error_message = 'Email already exists. Please login.';
+            include 'login.php';
+            include '../errors/error.php';
+        }
+        
     } else {
         $error_message = 'Passwords do not match, try again.';
-        include 'login.php';
+        include 'register.php';
         include '../errors/error.php';
     }
     

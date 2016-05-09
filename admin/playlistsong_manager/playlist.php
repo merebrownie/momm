@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Tby meredith browne
+ * by meredith browne
  */
 
 ?>
@@ -44,7 +44,7 @@
                                                     <input type="hidden" name="action" value="delete_playlistsong">
                                                     <input type="hidden" name="playlistID" value="<?php echo $playlistsong['playlistID']; ?>">
                                                     <input type="hidden" name="songID" value="<?php echo $playlistsong['songID']; ?>">
-                                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                                    <input type="submit" value="Delete" class="btn btn-danger pull-right">
                                                 </form>
                                             </td>
                                         </tr>
@@ -81,7 +81,7 @@
                         <h1>New Song</h1>
                         <div>
                             <form action="../song_manager/index.php" method="post" class="form-horizontal">
-                                <input type="hidden" name="action" value="add_song">
+                                <input type="hidden" name="action" value="add_song_from_playlist">
                                     <label class="control-label">Title: </label>
                                     <input type="text" name="title" class="form-control">
                                     <br>
@@ -94,6 +94,29 @@
                                     <input type="submit" name="Submit" class="btn btn-default">
                             </form>
                         </div>
+                        <h1>Last.fm Top 50 Tracks</h1>
+                        <table class="table table-hover table-striped table-responsive">
+                            <tr>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>Genre</th>
+                                <th></th>
+                            </tr>
+                            <?php foreach ($xml->tracks[0]->children() as $song) : ?>
+                            <tr>
+                            <form action="../song_manager/index.php" method="post">
+                                <input type="hidden" name="action" value="add_song_from_playlist"> 
+                                <input type="hidden" name="title" value="<?php echo $song->name; ?>">
+                                <input type="hidden" name="artist" value="<?php echo $song->artist->name; ?>">
+                                <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
+                                <td><?php echo $song->name; ?></td>
+                                <td><?php echo $song->artist->name; ?></td>
+                                <td><input type="text" name="genre" class="form-control"></td>
+                                <td><input type="submit" value="Add" class="btn btn-default pull-right"></td>
+                            </form>
+                            </tr>
+                            <?php endforeach; ?>
+                        </table>
                     </div>
                 </div>
             </div>

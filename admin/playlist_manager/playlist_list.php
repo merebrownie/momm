@@ -30,9 +30,8 @@
                                 <form action="../playlist_manager/index.php" method="post">
                                     <input type="hidden" name="action" value="delete_playlist">
                                     <input type="hidden" name="playlistID" value="<?php echo $playlist['playlistID']; ?>">
-                                    <input type="submit" value="Delete" class="btn btn-danger">
+                                    <input type="submit" value="Delete" class="btn btn-danger pull-right">
                                 </form>
-                                <!--<a href="../playlist_manager/index.php?action=delete_playlist&playlistID=<?php echo $playlist['playlistID']; ?>">Delete</a>-->
                             </td>
                         </tr>
                         <?php endforeach; ?>

@@ -31,7 +31,7 @@
                         <br>
                         <input type="submit" value="Login" class="btn btn-default">
                     </form>
-                    <h3><a href="register.php">Registration</a></h3>
+                    <h3><a href="register.php">Sign-Up</a></h3>
                 </div>
             </div>
         </section>

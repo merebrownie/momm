@@ -20,7 +20,7 @@
         <section class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Announcements</h1>
+                    <h1 class="text-center" id="title">Master of My Music</h1>
                 </div>
             </div>
             <div class="row">

@@ -20,7 +20,7 @@
         <section class="container-fluid">
             <div class="row">
                 <div class="container">
-                    <h2>Register</h2>
+                    <h2>Sign-Up</h2>
                     <div>
                         <form action="index.php" method="post" class="form-horizontal">
                             <input type="hidden" name="action" value="register_user">
@@ -36,7 +36,7 @@
                             <label class="control-label">Re-enter Password: </label>
                             <input type="password" name="passwordcopy" class="form-control">
                             <br>
-                            <input type="submit" value="Register" class="btn btn-default">
+                            <input type="submit" value="Submit" class="btn btn-default">
                         </form>
                     </div>
                 </div>

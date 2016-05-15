@@ -6,8 +6,25 @@ section {
 
 body {
     background-color: #eee;
+    /*background-image: url("../img/music-bg.jpg")*/
 }
 
 #main {
     background-color: #eee;
+}
+
+#title {
+    font-family: "28DaysLater";
+    font-size: 92px;
+}
+
+.icon {
+    height: 25px;
+    width: 25px;
+    margin-right: 10px;
+}
+
+@font-face {
+    font-family: "28DaysLater";
+    src: url('/momm/fonts/28DaysLater.ttf');
 }

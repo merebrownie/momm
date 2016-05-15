@@ -35,10 +35,10 @@
                     <div>
                         <form action="index.php" method="post" class="form-horizontal">
                             <input type="hidden" name="action" value="change_password">
-                            <label class="control-label">Password: </label>
+                            <label class="control-label">New Password: </label>
                             <input type="password" name="password" class="form-control">
                             <br>
-                            <label class="control-label">Re-enter Password: </label>
+                            <label class="control-label">Re-enter New Password: </label>
                             <input type="password" name="passwordcopy" class="form-control">
                             <br>
                             <input type="submit" value="Submit" class="btn btn-default">

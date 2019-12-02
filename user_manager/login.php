@@ -24,10 +24,10 @@
                     <form action="index.php" method="post" class="form-horizontal">
                         <input type="hidden" name="action" value="login_user">
                         <label class="control-label">Email: </label>
-                        <input type="email" name="email" class="form-control">
+                        <input type="email" name="email" class="form-control" value="guest@uncc.edu">
                         <br>
                         <label class="control-label">Password: </label>
-                        <input type="password" name="password" class="form-control">
+                        <input type="password" name="password" class="form-control" value="password">
                         <br>
                         <input type="submit" value="Login" class="btn btn-default">
                     </form>
